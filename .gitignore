@@ -1,0 +1,3 @@
+*.properties
+dao/DaoAccess.php
+*.odt

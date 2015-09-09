@@ -1,0 +1,477 @@
+<?xml version="1.0"?>
+<sinta>
+	<!-- <ip active="1" value="192.168.110.237" port="9998"/> -->
+	<ip active="1" value="192.168.110.237" port="4321"/>
+	<volume_param bider="2"/>
+	<luz_param bider="2"/>
+	<menu_items>
+		<bienvenido msg="MENU:INICIO" print_text="">
+			<sinta_inicio msg="SISTEMA:INICIAR" print_text="SI_QUIERE_USAR_EL_SISTEMA_PRESIONE_AQUI"/>
+			<sistema_encendido msg="" print_text="EL SISTEMA YA ESTA ENCENDIDO"/>
+			<comprobar msg="SISTEMA:COMPROBAR" print_text="COMPROBAR"/>
+		</bienvenido>
+		<escenarios msg="MENU:ESCENARIOS" bertsio_berria="0" print_text="INICIO">
+			<elem name="enviar_clases" msg="ESCENARIO:ENVIAR_CLASES" visible="1" feed="0" print_text="ENVIAR_CLASES"/>
+			<elem name="recibir_clases" msg="ESCENARIO:RECIBIR_CLASES" visible="1" feed="0" print_text="RECIBIR_CLASES"/>
+			<elem name="clase_local" msg="ESCENARIO:CLASE_LOCAL" visible="1" feed="0" print_text="CLASE_LOCAL"/>
+			<elem name="seminario/clase" msg="ESCENARIO:SEMINARIO/CLASE" visible="1" feed="0" print_text="SEMINARIO_CLASE"/>
+			<elem name="pelicula" msg="ESCENARIO:PELICULA" visible="1" feed="0" print_text="PELICULA"/>
+			<elem name="operador" msg="ESCENARIO:OPERADOR" visible="0" print_text="OPERADOR"/>
+		</escenarios>
+		<llamar msg="MENU:LLAMARCOLGAR" print_text="LLAMAR_COLGAR">
+			<elem name="ancho_de_banda" msg="VIDEOCONFERENCIA:ANCHO_DE_BANDA" visible="0" print_text="CAMBIAR_ANCHO_DE_BANDA" msg_option="VIDEOCONFERENCIA:ANCHO_DE_BANDA:" msg_sel="VIDEOCONFERENCIA:ANCHO_DE_BANDA:SEL:" msg_desel="VIDEOCONFERENCIA:CONTACTOS:DESEL:" ok_trans="ACEPTAR"/>	
+			<elem name="colgar" msg="VIDEOCONFERENCIA:COLGAR" visible="1" print_text="COLGAR" fun_p="colgar" msg_sel="VIDEOCONFERENCIA:LLAMADAS:SEL:" msg_desel="VIDEOCONFERENCIA:LLAMADAS:DESEL:"/>
+			<elem name="graficos" msg="VIDEOCONFERENCIA:GRAFICOS" visible="1" feed="1" print_text="GRAFIKOAK"/>
+			<teclado>
+				<elem name="libro_direcciones" msg="VIDEOCONFERENCIA:CONTACTOS" visible="1" print_text="LIBRO_DE_DIRECCIONES" msg_option="VIDEOCONFERENCIA:CONTACTOS:LLAMAR:" msg_sel="VIDEOCONFERENCIA:CONTACTOS:SEL:" msg_desel="VIDEOCONFERENCIA:CONTACTOS:DESEL:" ok_trans="LLAMAR"/>
+				<elem name="llamar" msg="VIDEOCONFERENCIA:LLAMAR" visible="1" print_text="LLAMAR" fun_p="llamar"/>
+				<elem name="llamar_rdsi" msg="VIDEOCONFERENCIA:LLAMAR:RDSI" visible="0" print_text="RDSI" fun_p="llamar"/>
+				<elem name="llamar_ip" msg="VIDEOCONFERENCIA:LLAMAR:IP" visible="0" print_text="IP" fun_p="llamar"/>	
+				<elem name="borrar_numero" msg="VIDEOCONFERENCIA:BORRAR:TODO" visible="1" print_text="BORRAR_NUMERO" fun_p="borrar"/>
+				<elem name="retroceder" msg="VIDEOCONFERENCIA:BORRAR:ULTIMO" visible="1" print_text="RETROCEDER" fun_p="retroceder"/>
+			</teclado>
+			<right>
+				<elem name="activar_no_interrumpir" msg="VIDEOCONFERENCIA:NO_INTERRUNPIR:ACTIVAR" visible="1" feed="1" print_text="ACTIVAR"/>
+				<elem name="apagar_no_interrumpir" msg="VIDEOCONFERENCIA:NO_INTERRUNPIR:APAGAR" visible="1" feed="1" print_text="APAGAR"/>
+				<elem name="apagar_nuestro_sonido" msg="VIDEOCONFERENCIA:NUESTRO_SONIDO:APAGAR" visible="1" feed="1" print_text="APAGAR"/>
+				<elem name="enviar" msg="VIDEOCONFERENCIA:NUESTRO_SONIDO:ENVIAR" visible="1" feed="1" print_text="ENVIAR"/>
+				<elem name="sonido_gora" msg="VIDEOCONFERENCIA:SONIDO_CONTRAPARTE:SUBIR_VOLUMEN" visible="1" print_text=""/>
+				<elem name="sonido_behera" msg="VIDEOCONFERENCIA:SONIDO_CONTRAPARTE:BAJAR_VOLUMEN" visible="1" print_text=""/>
+				<elem name="mostrar_contraparte" msg="VIDEOCONFERENCIA:MOSTRAR_CONTRAPARTE" visible="0" print_text="MOSTRAR_CONTRA_PARTE"/>
+			</right>
+			<numbers msg="VIDEOCONFERENCIA:MARCAR:"/>
+		</llamar>
+		<sonido msg="MENU:SONIDO" print_text="SONIDO">
+			<grupos>
+				<grupo name="mic1" visible="1" print_text="micr1">
+					<elem name="gora" msg="MICROFONO:SUBIR_VOLUMEN:M1" visible="1" print_text=""/>
+					<elem name="behera" msg="MICROFONO:BAJAR_VOLUMEN:M1" visible="1" print_text=""/>
+					<elem name="encender" msg="MICROFONO:ACTIVAR:M1" visible="1" feed="1" print_text="activar"/>
+					<elem name="apagar" msg="MICROFONO:DESACTIVAR:M1" visible="1" feed="1" print_text="desactivar"/>
+				</grupo>
+				<grupo name="mic2" visible="1" print_text="micr2">
+					<elem name="gora" msg="MICROFONO:SUBIR_VOLUMEN:M2" visible="1" print_text=""/>
+					<elem name="behera" msg="MICROFONO:BAJAR_VOLUMEN:M2" visible="1" print_text=""/>
+					<elem name="encender" msg="MICROFONO:ACTIVAR:M2" visible="1" feed="1" print_text="activar"/>
+					<elem name="apagar" msg="MICROFONO:DESACTIVAR:M2" visible="1" feed="1" print_text="desactivar"/>
+				</grupo>
+				<grupo name="mic3" visible="1" print_text="micr3">
+					<elem name="gora" msg="MICROFONO:SUBIR_VOLUMEN:M3" visible="1" print_text=""/>
+					<elem name="behera" msg="MICROFONO:BAJAR_VOLUMEN:M3" visible="1" print_text=""/>
+					<elem name="encender" msg="MICROFONO:ACTIVAR:M3" visible="1" feed="1" print_text="activar"/>
+					<elem name="apagar" msg="MICROFONO:DESACTIVAR:M3" visible="1" feed="1" print_text="desactivar"/>
+				</grupo>
+				<grupo name="mic4" visible="1" print_text="micr4">
+					<elem name="gora" msg="MICROFONO:SUBIR_VOLUMEN:M4" visible="1" print_text=""/>
+					<elem name="behera" msg="MICROFONO:BAJAR_VOLUMEN:M4" visible="1" print_text=""/>
+					<elem name="encender" msg="MICROFONO:ACTIVAR:M4" visible="1" feed="1" print_text="activar"/>
+					<elem name="apagar" msg="MICROFONO:DESACTIVAR:M4" visible="1" feed="1" print_text="desactivar"/>
+				</grupo>
+				<grupo name="mic_atril" visible="1" print_text="micr_atril">
+					<elem name="gora" msg="MICROFONO:SUBIR_VOLUMEN:M5" visible="1" print_text=""/>
+					<elem name="behera" msg="MICROFONO:BAJAR_VOLUMEN:M5" visible="1" print_text=""/>
+					<elem name="encender" msg="MICROFONO:ACTIVAR:M5" visible="1" feed="1" print_text="activar"/>
+					<elem name="apagar" msg="MICROFONO:DESACTIVAR:M5" visible="1" feed="1" print_text="desactivar"/>
+				</grupo>
+				<grupo name="mic_atril2" visible="1" print_text="micr_atril2">
+					<elem name="gora" msg="MICROFONO:SUBIR_VOLUMEN:M6" visible="1" print_text=""/>
+					<elem name="behera" msg="MICROFONO:BAJAR_VOLUMEN:M6" visible="1" print_text=""/>
+					<elem name="encender" msg="MICROFONO:ACTIVAR:M6" visible="1" feed="1" print_text="activar"/>
+					<elem name="apagar" msg="MICROFONO:DESACTIVAR:M6" visible="1" feed="1" print_text="desactivar"/>
+				</grupo>
+			</grupos>
+			<elem name="entrante_activar" msg="SONIDO:ACTIVAR:ENTRANTE" visible="1" feed="1" print_text="ACTIVAR"/>
+			<elem name="entrante_silenciar" msg="SONIDO:SILENCIAR:ENTRANTE" visible="1" feed="1" print_text="SILENCIAR"/>
+			<elem name="envia_activar" msg="SONIDO:ACTIVAR:SALIENTE" visible="1" feed="1" print_text="ACTIVAR"/>
+			<elem name="envia_silenciar" msg="SONIDO:SILENCIAR:SALIENTE" visible="1" feed="1" print_text="SILENCIAR"/>
+			<elem name="general_activar" msg="SONIDO:ACTIVAR:GENERAL" visible="1" feed="1" print_text="ACTIVAR"/>
+			<elem name="general_silenciar" msg="SONIDO:SILENCIAR:GENERAL" visible="1" feed="1" print_text="SILENCIAR"/>
+			<elem name="vol_son_gora" msg="SONIDO:SUBIR_VOLUMEN" visible="1" print_text=""/>
+			<elem name="vol_son_behera" msg="SONIDO:BAJAR_VOLUMEN" visible="1" print_text=""/>					
+		</sonido>
+		<principal msg="MENU:PRINCIPAL" print_text="PRINCIPAL">
+			<object name="dvd" type="dvd" msg="DISPOSITIVO:DVD" visible="0" print_text="dvd" title="DVD">
+				<panel name="control_de_niveles" x="0" y="0" visible="1" print_text="">
+					<elem name="dvd_vol_gora" msg="DVD:SUBIR_VOLUMEN" visible="1" print_text=""/>
+					<elem name="dvd_vol_behera" msg="DVD:BAJAR_VOLUMEN" visible="1" print_text=""/>
+					<elem name="norte" msg="DVD:NORTE" visible="1" feed="0" print_text=""/>
+					<elem name="oeste" msg="DVD:OESTE" visible="1" feed="0" print_text=""/>
+					<elem name="este" msg="DVD:ESTE" visible="1" feed="0" print_text=""/>
+					<elem name="sur" msg="DVD:SUR" visible="1" feed="0" print_text=""/>
+					<elem name="aceptar" msg="DVD:ACEPTAR" visible="1" feed="0" print_text="ACEPTAR"/>
+					<elem name="rstep" msg="DVD:RSTEP" visible="1" feed="0" print_text="RSTEP"/>
+					<elem name="fstep" msg="DVD:FSTEP" visible="1" feed="0" print_text="FSTEP"/>					
+				</panel>
+				<panel name="play_pause_eta_abar" x="0" y="366.8" visible="1" print_text="">	
+					<elem name="activar" msg="DVD:ACTIVAR" visible="1" feed="0" print_text=""/>
+					<elem name="parar" msg="DVD:PARAR" visible="1" feed="0" print_text=""/>
+					<elem name="pausa" msg="DVD:PAUSA" visible="1" feed="0" print_text=""/>
+					<elem name="retroceder" msg="DVD:RETROCEDER" visible="1" feed="0" print_text=""/>
+					<elem name="avanzar" msg="DVD:AVANZAR" visible="1" feed="0" print_text=""/>
+					<elem name="power" msg="DVD:ENCENDER" visible="0" feed="1" print_text="ON"/>
+					<elem name="power_off" msg="DVD:APAGAR" visible="0" feed="1" print_text="OFF"/>
+					<elem name="menu_en_pantalla" msg="DVD:MENU_PANTALLA" visible="1" feed="0" print_text="MENU_EN_PANTALLA"/>
+					<elem name="on_off" msg="DVD:ON" visible="1" feed="0" print_text="ON"/>
+				</panel>
+			</object>
+			<object name="pizarra_digital" type="pizarra_digital" msg="DISPOSITIVO:PIZARRA_DIGITAL" visible="1" print_text="Pizarra" title="PIZARRA_DIGITAL">
+				<panel name="encender_apagar" x="0" y="0" visible="1" print_text="ENCENDER_APAGAR_PIZARRA">	
+					<elem name="encender" msg="PIZARRA_DIGITAL:ENCENDER" visible="1" feed="1" print_text="ENCENDER"/>
+					<elem name="apagar" msg="PIZARRA_DIGITAL:APAGAR" visible="1" feed="2" print_text="APAGAR" fun_p="popup_proy"/>
+					<elem name="ajuste_automatico" msg="PIZARRA:AJUSTE_AUTOMATICO" visible="0" print_text="AJUSTE AUTOMATICO"/>
+					<elem name="activar" msg="PIZARRA_DIGITAL:MUTEAR" visible="1" feed="1" print_text="MUTEAR"/>
+					<elem name="desactivar" msg="PIZARRA_DIGITAL:DESMUTEAR" visible="1" feed="1" print_text="DESMUTEAR"/>
+				</panel>
+				<panel name="seleccion_en_pizarra" x="0" y="195" visible="1" feed="0" print_text="">	
+					<elem name="dvd" msg="PIZARRA_DIGITAL:DVD" visible="1" print_text="DVD"/>
+					<elem name="pcsuelo" msg="PIZARRA_DIGITAL:PCSUELO" visible="1" print_text="PCSUELO"/>
+					<elem name="portatil1" msg="PIZARRA_DIGITAL:PORTATIL1" visible="1" print_text="PORTATIL1"/>
+					<elem name="portatil2" msg="PIZARRA_DIGITAL:PORTATIL2" visible="1" print_text="PORTATIL2"/>
+					<elem name="portatil3" msg="PIZARRA_DIGITAL:PORTATIL3" visible="1" print_text="PORTATIL3"/>
+					<elem name="think_client" msg="PIZARRA_DIGITAL:THINK_CLIENT" visible="1" print_text="THINK_CLIENT"/>
+					<elem name="camara_de_documentos" msg="PIZARRA_DIGITAL:CAMARA_DE_DOCUMENTOS" visible="1" print_text="CAMARA_DE_DOCUMENTOS"/>
+					<elem name="dvdgrab" msg="PIZARRA_DIGITAL:DVDGRAB" visible="1" print_text="DVDGRAB"/>
+					<elem name="atril" msg="PIZARRA_DIGITAL:ATRIL" visible="1" print_text="ATRIL"/>
+				</panel>
+				<panel name="camaras_a_pantalla" x="0" y="425" visible="0" print_text="">	
+					<elem name="camara1" msg="PIZARRA_DIGITAL:CAMARA_1" visible="1" print_text="CAMARA_ALUMNO_IZQ"/>
+					<elem name="camara2" msg="PIZARRA_DIGITAL:CAMARA_2" visible="1" print_text="CAMARA_ALUMNO_DER"/>
+					<elem name="camara3" msg="PIZARRA_DIGITAL:CAMARA_3" visible="1" print_text="CAMARA_PRESIDENCIA"/>
+				</panel>
+			</object>
+			<object name="camara_de_documentos" type="camara_de_documentos" msg="DISPOSITIVO:CAMARA_DE_DOCUMENTOS" visible="0" print_text="visor_de_opacos" title="VISOR_DE_OPACOS">
+				<panel name="ajuste_de_lentes" x="0" y="0" visible="1" print_text="AJUSTE_DE_LENTES">	
+					<elem name="foco_mas" msg="CAMARADOC:SUBIR_FOCO" visible="1" print_text="FOCO_MAS"/>
+					<elem name="foco_menos" msg="CAMARADOC:BAJAR_FOCO" visible="1" print_text="FOCO_MENOS"/>
+					<elem name="auto_foco" msg="CAMARADOC:AUTOFOCO" visible="0" print_text="AUTO FOCO"/>
+					<elem name="zoom_mas" msg="CAMARADOC:ACERCAR" visible="1" print_text="ZOOM_PLUS_ACERCAR"/>
+					<elem name="zoom_menos" msg="CAMARADOC:ALEJAR" visible="1" print_text="ZOOM_MINUS_ALEJAR"/>
+				</panel>
+				<panel name="control_camara_doc" x="0" y="175" visible="1" print_text="CONTROL">	
+					<elem name="tama&#xF1;o_a3" msg="CAMARADOC:DINA_A3" visible="1" feed="0" print_text="TAMANO_A3"/>
+					<elem name="tama&#xF1;o_a4" msg="CAMARADOC:DINA_A4" visible="1" feed="0" print_text="TAMANO_A4"/>
+					<elem name="encender_campana" msg="CAMARADOC:ENCENDER" visible="1" feed="1" print_text="ENCENDER"/>
+					<elem name="apagar_campana" msg="CAMARADOC:APAGAR" visible="1" feed="1" print_text="APAGAR"/>
+					<elem name="mezclar" msg="CAMARADOC:MEZCLAR_CAMARA_CAMARADOC" visible="0" print_text="MEZCLAR CAM/CAM DOC SI/NO"/>
+					<elem name="ayuda" msg="CAMARADOC:AYUDA" visible="0" print_text="AYUDA"/>
+				</panel>
+			</object>
+			<object name="ordenador_principal" type="ordenador_principal" msg="DISPOSITIVO:ORDENADOR_PRINCIPAL" visible="0" print_text="Ordenador principal" title="ORDENADOR PRINCIPAL">
+				<panel name="control_camara_principal" x="0" y="0" visible="1" print_text="CONTROL CAMARA PRINCIPAL">	
+					<elem name="zoom_mas" msg="PC:ACERCAR" visible="1" print_text="ZOOM_PLUS_ACERCAR"/>
+					<elem name="zoom_menos" msg="PC:ALEJAR" visible="1" print_text="ZOOM_MINUS_ALEJAR"/>
+					<elem name="kamara_gora" msg="PC:NORTE" visible="1" print_text=""/>
+					<elem name="kamara_ezkerrera" msg="PC:OESTE" visible="1" print_text=""/>
+					<elem name="kamara_eskubira" msg="PC:ESTE" visible="1" print_text=""/>
+					<elem name="kamara_behera" msg="PC:SUR" visible="1" print_text=""/>
+					<elem name="posicion_angulo_ancho" msg="PC:POSICION_ANGULO_ANCHO" visible="1" print_text="POSICION_ANGULO_ANCHO"/> 
+					<elem name="posicion_prefijada1" msg="PC:POSICION_1" visible="1" print_text="POSICION_PREFIJADA_1"/>
+					<elem name="posicion_prefijada2" msg="PC:POSICION_2" visible="1" print_text="POSICION_PREFIJADA_2"/>
+				</panel>
+				<panel name="ajustar_imagen_ordenador" x="0" y="358.8" visible="1" print_text="AJUSTAR IMAGEN ORDENADOR">	
+					<elem name="agrandar_achicar" msg="PC:AGRANDAR_ACHICAR_IMAGEN" visible="1" print_text="AGRANDAR/ACHICAR IMAGEN"/>
+					<elem name="centrar_imagen" msg="PC:CENTRAR_IMAGEN" visible="1" print_text="CENTRAR IMAGEN"/>
+					<elem name="mezclar_camara_ord" msg="PC:MEZCLAR_CAMARA_ORDENADOR" visible="1" print_text="MEZCLAR CAMARA/ORD (SI/NO)"/>
+				</panel>
+			</object>
+			<object name="portatil1" type="portatil1" msg="DISPOSITIVO:PORTATIL1" visible="0" print_text="Portatil1" title="PORTATIL1">
+			</object>
+			<object name="portatil2" type="portatil2" msg="DISPOSITIVO:PORTATIL2" visible="0" print_text="Portatil2" title="PORTATIL2">
+			</object>
+			<object name="portatil3" type="portatil3" msg="DISPOSITIVO:PORTATIL3" visible="0" print_text="Portatil3" title="PORTATIL3">
+			</object>
+			<object name="think_client" type="portatil4" msg="DISPOSITIVO:THINK_CLIENT" visible="0" print_text="Think Client" title="THINK_CLIENT">
+			</object>
+			<object name="enviar_sonido" type="enviar_sonido" msg="SONIDO:ACTIVAR:GENERAL" visible="0" print_text="ENVIAR SONIDO" title="ENVIAR SONIDO">
+			</object>
+			<object name="silenciar" type="silenciar" msg="SONIDO:SILENCIAR:GENERAL" visible="0" print_text="SILENCIAR" title="SILENCIAR">
+			</object>
+			<object name="pantalla_presidencia" type="pantalla_presidencia" msg="DISPOSITIVO:PANTALLA_PRESIDENCIA" visible="1" print_text="feedback" title="PANTALLA_PRESIDENCIA">
+				<panel name="encender_apagar_pantalla" x="0" y="0" visible="1" print_text="ENCENDER_APAGAR_PANTALLA">	
+					<elem name="encender" msg="PANTALLA_PRESIDENCIA:ENCENDER" feed="1" visible="1" print_text="ENCENDER"/>
+					<elem name="apagar" msg="PANTALLA_PRESIDENCIA:APAGAR" feed="1" visible="1" print_text="APAGAR"/>
+				</panel>
+				<panel name="imagen_a_mostrar" x="0" y="105" visible="1" feed="0" print_text="IMAGEN_A_MOSTRAR">	
+					<elem name="mostrar_contraparte" msg="PANTALLA_PRESIDENCIA:MOSTRAR_CONTRAPARTE" visible="1" print_text="MOSTRAR_CONTRA_PARTE"/>
+					<elem name="mostrar_nuestra_imagen" msg="PANTALLA_PRESIDENCIA:MOSTRAR_NUESTRA_IMAGEN" visible="1" print_text="MOSTRAR_NUESTRA_IMAGEN"/>
+					<elem name="mostrar_contraparte_y_nuestra_imagen" msg="PANTALLA_PRESIDENCIA:MOSTRAR_CONTRAPARTE_Y_NUESTRA_IMAGEN" visible="1" print_text="CONTRA_PARTE_Y_NUESTRA_IMAGEN"/>
+					<elem name="pcsuelo" msg="PANTALLA_PRESIDENCIA:PCSUELO" visible="0" print_text="PCSUELO"/>
+				</panel>
+				<panel name="seleccion_en_pizarra" x="0" y="294" visible="1" feed="0" print_text="">	
+					<elem name="dvd" msg="PANTALLA_PRESIDENCIA:DVD" visible="1" print_text="DVD"/>
+					<elem name="pcsuelo" msg="PANTALLA_PRESIDENCIA:PCSUELO" visible="1" print_text="PCSUELO"/>
+					<elem name="portatil1" msg="PANTALLA_PRESIDENCIA:PORTATIL1" visible="1" print_text="PORTATIL1"/>
+					<elem name="portatil2" msg="PANTALLA_PRESIDENCIA:PORTATIL2" visible="1" print_text="PORTATIL2"/>
+					<elem name="portatil3" msg="PANTALLA_PRESIDENCIA:PORTATIL3" visible="1" print_text="PORTATIL3"/>
+					<elem name="think_client" msg="PANTALLA_PRESIDENCIA:THINK_CLIENT" visible="1" print_text="THINK_CLIENT"/>
+					<elem name="camara_de_documentos" msg="PANTALLA_PRESIDENCIA:CAMARA_DE_DOCUMENTOS" visible="1" print_text="CAMARA_DE_DOCUMENTOS"/>
+					<elem name="dvdgrab" msg="PANTALLA_PRESIDENCIA:DVDGRAB" visible="1" print_text="DVDGRAB"/>
+					<elem name="atril" msg="PANTALLA_PRESIDENCIA:ATRIL" visible="1" print_text="ATRIL"/>
+				</panel>
+			</object>
+			<object name="pantalla_entrada" type="pantalla_entrada" msg="DISPOSITIVO:PANTALLA_ENTRADA" visible="1" print_text="entrada" title="PANTALLA_ENTRADA">
+				<panel name="encender_apagar_pantalla" x="0" y="0" visible="1" print_text="ENCENDER_APAGAR_PANTALLA">	
+					<elem name="encender" msg="PANTALLA_ENTRADA:ENCENDER" feed="1" visible="1" print_text="ENCENDER"/>
+					<elem name="apagar" msg="PANTALLA_ENTRADA:APAGAR" feed="1" visible="1" print_text="APAGAR"/>
+				</panel>
+				<panel name="entrada_abajo" x="0" y="105" visible="0" print_text="">	
+					<elem name="dvd" msg="PANTALLA_ENTRADA:DVD" visible="1" print_text="DVD"/>
+					<elem name="pcsuelo" msg="PANTALLA_ENTRADA:PCSUELO" visible="1" print_text="PCSUELO"/>					
+				</panel>
+				<panel name="seleccion_en_pizarra" x="0" y="105" visible="1" feed="0" print_text="">	
+					<elem name="dvd" msg="PANTALLA_ENTRADA:DVD" visible="1" print_text="DVD"/>
+					<elem name="pcsuelo" msg="PANTALLA_ENTRADA:PCSUELO" visible="1" print_text="PCSUELO"/>
+					<elem name="portatil1" msg="PANTALLA_ENTRADA:PORTATIL1" visible="1" print_text="PORTATIL1"/>
+					<elem name="portatil2" msg="PANTALLA_ENTRADA:PORTATIL2" visible="1" print_text="PORTATIL2"/>
+					<elem name="portatil3" msg="PANTALLA_ENTRADA:PORTATIL3" visible="1" print_text="PORTATIL3"/>
+					<elem name="think_client" msg="PANTALLA_ENTRADA:THINK_CLIENT" visible="1" print_text="THINK_CLIENT"/>
+					<elem name="camara_de_documentos" msg="PANTALLA_ENTRADA:CAMARA_DE_DOCUMENTOS" visible="1" print_text="CAMARA_DE_DOCUMENTOS"/>
+					<elem name="dvdgrab" msg="PANTALLA_ENTRADA:DVDGRAB" visible="1" print_text="DVDGRAB"/>
+					<elem name="atril" msg="PANTALLA_ENTRADA:ATRIL" visible="1" print_text="ATRIL"/>
+				</panel>
+			</object>
+			<object name="pantalla_electrica" type="pantalla_electrica" msg="DISPOSITIVO:PANTALLA_ELECTRICA" visible="1" print_text="electrica" title="PANTALLA_ELECTRICA">
+				<panel name="subir_bajar_pantalla" x="0" y="0" visible="1" print_text="SUBIR_BAJAR_PANTALLA">	
+					<elem name="subir" msg="PANTALLA_ELECTRICA:SUBIR" visible="1" feed="1" print_text="SUBIR"/>
+					<elem name="bajar" msg="PANTALLA_ELECTRICA:BAJAR" visible="1" feed="1" print_text="BAJAR"/>
+				</panel>
+				<panel name="encender_apagar" x="0" y="102" visible="1" print_text="ENCENDER_APAGAR_PROYECTOR_CENTRAL">	
+					<elem name="encender" msg="PROYECTOR_CENTRAL:ENCENDER" visible="1" feed="1" print_text="ENCENDER"/>
+					<elem name="apagar" msg="PROYECTOR_CENTRAL:APAGAR" visible="1" feed="2" print_text="APAGAR" fun_p="popup_proy"/>
+					<elem name="ajuste_automatico" msg="" visible="0" print_text="AJUSTE AUTOMATICO"/>
+					<elem name="activar" msg="PROYECTOR_CENTRAL:MUTEAR" visible="1" feed="1" print_text="MUTEAR"/>
+					<elem name="desactivar" msg="PROYECTOR_CENTRAL:DESMUTEAR" visible="1" feed="1" print_text="DESMUTEAR"/>
+				</panel>
+				<panel name="seleccion_en_pizarra" x="0" y="294" visible="1" feed="0" print_text="">	
+					<elem name="dvd" msg="PROYECTOR_CENTRAL:DVD" visible="1" print_text="DVD"/>
+					<elem name="pcsuelo" msg="PROYECTOR_CENTRAL:PCSUELO" visible="1" print_text="PCSUELO"/>
+					<elem name="portatil1" msg="PROYECTOR_CENTRAL:PORTATIL1" visible="1" print_text="PORTATIL1"/>
+					<elem name="portatil2" msg="PROYECTOR_CENTRAL:PORTATIL2" visible="1" print_text="PORTATIL2"/>
+					<elem name="portatil3" msg="PROYECTOR_CENTRAL:PORTATIL3" visible="1" print_text="PORTATIL3"/>
+					<elem name="think_client" msg="PROYECTOR_CENTRAL:THINK_CLIENT" visible="1" print_text="THINK_CLIENT"/>
+					<elem name="camara_de_documentos" msg="PROYECTOR_CENTRAL:CAMARA_DE_DOCUMENTOS" visible="1" print_text="CAMARA_DE_DOCUMENTOS"/>
+					<elem name="dvdgrab" msg="PROYECTOR_CENTRAL:DVDGRAB" visible="1" print_text="DVDGRAB"/>
+					<elem name="atril" msg="PROYECTOR_CENTRAL:ATRIL" visible="1" print_text="ATRIL"/>
+				</panel>				
+			</object>
+			<object name="camara1" type="camara1" msg="DISPOSITIVO:CAMARA_1" visible="0" print_text="camara_alumno_izq" max_pos="70" msg2="CAMARA_1:POSICION:" title="CAMARA_ALUMNO_IZQ">
+				<panel name="camara_generico" x="0" y="0" visible="1" print_text="">	
+					<elem name="zoom_mas" msg="CAMARA_1:ACERCAR" visible="1" print_text="ZOOM_PLUS_ACERCAR" fun_r="stop" msg_stop="CAMARA_1:PARAR"/>
+					<elem name="zoom_menos" msg="CAMARA_1:ALEJAR" visible="1" print_text="ZOOM_MINUS_ALEJAR" fun_r="stop" msg_stop="CAMARA_1:PARAR"/>
+					<elem name="kamara_gora" msg="CAMARA_1:TILTUP" visible="1" print_text="" fun_r="stop" msg_stop="CAMARA_1:PARAR"/>
+					<elem name="kamara_ezkerrera" msg="CAMARA_1:PANL" visible="1" print_text="" fun_r="stop" msg_stop="CAMARA_1:PARAR"/>
+					<elem name="kamara_eskubira" msg="CAMARA_1:PANR" visible="1" print_text="" fun_r="stop" msg_stop="CAMARA_1:PARAR"/>
+					<elem name="kamara_behera" msg="CAMARA_1:TILTDOWN" visible="1" print_text="" fun_r="stop" msg_stop="CAMARA_1:PARAR"/>
+					<elem name="todas_posiciones" msg="CAMARA_1:TODAS_POSICIONES" visible="1" print_text="VER_TODAS_LAS_POSICIONES"/>
+				</panel>
+				<panel name="camara_panel3" x="0" y="268" visible="0" print_text="">	
+					<elem name="imagen_delegado" msg="CAMARA_1:DELEGADO" visible="1" print_text="IMAGEN_DELEGADO_SI_NO"/>
+					<elem name="invertir_mezcla_imagenes" msg="CAMARA_1:INVERTIR_MEZCLA_IMAGENES" visible="1" print_text="INVERTIR_MEZCLA_IMAGENES"/>
+					<elem name="iluminacion_de_fondo" msg="CAMARA_1:ILUMINACION_FONDO" visible="1" print_text="ILUMINACION_DE_FONDO"/>
+				</panel>
+				<panel name="posiciones_fijas" x="0" y="350" visible="0" print_text="POSICIONES_FIJAS">	
+					<elem name="posicion_angulo_ancho" msg="" visible="1" print_text="POSICION_ANGULO_ANCHO"/>
+					<elem name="posicion_prefijada1" msg="" visible="1" print_text="POSICION_PREFIJADA_1"/>
+					<elem name="posicion_prefijada2" msg="" visible="1" print_text="POSICION_PREFIJADA_2"/>
+					<elem name="almacenar_posicion" msg="CAMARA_1:GUARDAR_POSICION" visible="1" print_text="ALMACENAR_POSICION"/>
+				</panel>				
+			</object>
+			<object name="camara2" type="camara2" msg="DISPOSITIVO:CAMARA_2" visible="0" print_text="camara_alumno_der" max_pos="70" msg2="CAMARA_2:POSICION:" title="CAMARA_ALUMNO_DER">
+				<panel name="camara_generico" x="0" y="0" visible="1" print_text="">	
+					<elem name="zoom_mas" msg="CAMARA_2:ACERCAR" visible="1" print_text="ZOOM_PLUS_ACERCAR" fun_r="stop" msg_stop="CAMARA_2:PARAR"/>
+					<elem name="zoom_menos" msg="CAMARA_2:ALEJAR" visible="1" print_text="ZOOM_MINUS_ALEJAR" fun_r="stop" msg_stop="CAMARA_2:PARAR"/>
+					<elem name="kamara_gora" msg="CAMARA_2:TILTUP" visible="1" print_text="" fun_r="stop" msg_stop="CAMARA_2:PARAR"/>
+					<elem name="kamara_ezkerrera" msg="CAMARA_2:PANL" visible="1" print_text="" fun_r="stop" msg_stop="CAMARA_2:PARAR"/>
+					<elem name="kamara_eskubira" msg="CAMARA_2:PANR" visible="1" print_text="" fun_r="stop" msg_stop="CAMARA_2:PARAR"/>
+					<elem name="kamara_behera" msg="CAMARA_2:TILTDOWN" visible="1" print_text="" fun_r="stop" msg_stop="CAMARA_2:PARAR"/>
+					<elem name="todas_posiciones" msg="CAMARA_2:TODAS_POSICIONES" visible="1" print_text="VER_TODAS_LAS_POSICIONES"/>
+				</panel>
+				<panel name="camara_panel3" x="0" y="268" visible="0" print_text="">	
+					<elem name="imagen_delegado" msg="CAMARA_2:DELEGADO" visible="1" print_text="IMAGEN_DELEGADO_SI_NO"/>
+					<elem name="invertir_mezcla_imagenes" msg="CAMARA_2:INVERTIR_MEZCLA_IMAGENES" visible="1" print_text="INVERTIR_MEZCLA_IMAGENES"/>
+					<elem name="iluminacion_de_fondo" msg="CAMARA_2:ILUMINACION_FONDO" visible="1" print_text="ILUMINACION_DE_FONDO"/>
+				</panel>
+				<panel name="posiciones_fijas" x="0" y="350" visible="0" print_text="POSICIONES_FIJAS">	
+					<elem name="posicion_angulo_ancho" msg="" visible="1" print_text="POSICION_ANGULO_ANCHO"/>
+					<elem name="posicion_prefijada1" msg="" visible="1" print_text="POSICION_PREFIJADA_1"/>
+					<elem name="posicion_prefijada2" msg="" visible="1" print_text="POSICION_PREFIJADA_2"/>
+					<elem name="almacenar_posicion" msg="CAMARA_2:GUARDAR_POSICION" visible="1" print_text="ALMACENAR_POSICION"/>
+				</panel>
+			</object>
+			<object name="camara3" type="camara3" msg="DISPOSITIVO:CAMARA_3" visible="0" print_text="camara_presidencia" max_pos="6" msg2="CAMARA_3:POSICION:" title="CAMARA_PRESIDENCIA">
+				<panel name="camara_generico" x="0" y="0" visible="1" print_text="">	
+					<elem name="zoom_mas" msg="CAMARA_3:ACERCAR" visible="1" print_text="ZOOM_PLUS_ACERCAR" fun_r="stop" msg_stop="CAMARA_3:PARAR"/>
+					<elem name="zoom_menos" msg="CAMARA_3:ALEJAR" visible="1" print_text="ZOOM_MINUS_ALEJAR" fun_r="stop" msg_stop="CAMARA_3:PARAR"/>
+					<elem name="kamara_gora" msg="CAMARA_3:TILTUP" visible="1" print_text="" fun_r="stop" msg_stop="CAMARA_3:PARAR"/>
+					<elem name="kamara_ezkerrera" msg="CAMARA_3:PANL" visible="1" print_text="" fun_r="stop" msg_stop="CAMARA_3:PARAR"/>
+					<elem name="kamara_eskubira" msg="CAMARA_3:PANR" visible="1" print_text="" fun_r="stop" msg_stop="CAMARA_3:PARAR"/>
+					<elem name="kamara_behera" msg="CAMARA_3:TILTDOWN" visible="1" print_text="" fun_r="stop" msg_stop="CAMARA_3:PARAR"/>
+					<elem name="todas_posiciones" msg="CAMARA_3:TODAS_POSICIONES" visible="1" print_text="VER_TODAS_LAS_POSICIONES"/>
+				</panel>
+				<panel name="camara_panel3" x="0" y="268" visible="0" print_text="">	
+					<elem name="imagen_delegado" msg="CAMARA_3:DELEGADO" visible="1" print_text="IMAGEN_DELEGADO_SI_NO"/>
+					<elem name="invertir_mezcla_imagenes" msg="CAMARA_3:INVERTIR_MEZCLA_IMAGENES" visible="1" print_text="INVERTIR_MEZCLA_IMAGENES"/>
+					<elem name="iluminacion_de_fondo" msg="CAMARA_3:ILUMINACION_FONDO" visible="1" print_text="ILUMINACION_DE_FONDO"/>
+				</panel>
+				<panel name="posiciones_fijas" x="0" y="350" visible="0" print_text="POSICIONES_FIJAS">	
+					<elem name="posicion_angulo_ancho" msg="" visible="1" print_text="POSICION_ANGULO_ANCHO"/>
+					<elem name="posicion_prefijada1" msg="" visible="1" print_text="POSICION_PREFIJADA_1"/>
+					<elem name="posicion_prefijada2" msg="" visible="1" print_text="POSICION_PREFIJADA_2"/>
+					<elem name="almacenar_posicion" msg="CAMARA_3:GUARDAR_POSICION" visible="1" print_text="ALMACENAR_POSICION"/>
+				</panel>
+			</object>
+			<object name="dvdgrab" type="dvdgrab" msg="DISPOSITIVO:DVDGRAB" visible="1" print_text="grabazioa" title="GRABAZIOA">
+				<panel name="dvdgrab_arriba" x="0" y="0" visible="0" print_text="">	
+					<elem name="power_on" msg="DVDGRAB:ENCENDER_GRAB" visible="0" print_text="ON"/>
+					<elem name="power_off" msg="DVDGRAB:APAGAR_GRAB" visible="0" print_text="OFF"/>
+					<elem name="dvd" msg="DVDGRAB:PONER_DVD" visible="0" print_text="DVD"/>
+					<elem name="tv" msg="DVDGRAB:PONER_TV" visible="0" print_text="TV"/>
+				</panel>
+				<panel name="dvdgrab_abajo" x="0" y="0" visible="1" print_text="DVDGRAB">	
+					<elem name="vol_gora" msg="DVDGRAB:SUBIR_VOLUMEN_GRAB" visible="1" print_text=""/>
+					<elem name="vol_behera" msg="DVDGRAB:BAJAR_VOLUMEN_GRAB" visible="1" print_text=""/>
+					<elem name="tv_gora" msg="DVDGRAB:CANAL_ARRIBA" visible="1" print_text=""/>
+					<elem name="tv_behera" msg="DVDGRAB:CANAL_ABAJO" visible="1" print_text=""/>
+					<elem name="source" msg="DVDGRAB:SOURCE" visible="1" feed="0" print_text="SOURCE"/>
+					<elem name="grabar" msg="DVDGRAB:GRABAR" visible="1" feed="1" print_text="GRABAR"/>
+					<elem name="parar_grabacion" msg="DVDGRAB:PARAR_GRABACION" feed="1" visible="1" print_text="PARAR_GRABACION"/>
+				</panel>
+				<panel name="grabazioa_tknika72" x="0" y="350" visible="1" shell_video="1" print_text="GRABAZIOA_ZERBITZARIAN">	
+					<elem name="hasi" msg="BUTTON:SHELL:HASI_REFR:_level0.obj_clip.grabazioa_tknika72.hasi" visible="1" feed="1" print_text="GRABAR" fun_p="shell_video_hasi"/>
+					<elem name="gelditu" msg="BUTTON:SHELL:GELDITU_REFR:_level0.obj_clip.grabazioa_tknika72.gelditu" visible="1" feed="1" print_text="PARAR_GRABACION" fun_p="shell_video_gelditu"/>					
+				</panel>
+			</object>
+			<object name="foco1" type="foco1" msg="DISPOSITIVO:FOCO_1" visible="0" print_text="Foco 1" title="FOCO 1">
+			</object>
+			<object name="foco2" type="foco1" msg="DISPOSITIVO:FOCO_2" visible="0" print_text="Foco 2" title="FOCO 2">
+			</object>
+			<object name="video_reproducir" type="video_reproducir" msg="DISPOSITIVO:VIDEO" visible="0" print_text="video" title="VIDEO">
+				<panel name="video_niveles_y_seleccion" x="0" y="0" visible="1" print_text="NIVELES Y SELECCION">	
+					<elem name="vol_gora" msg="VIDEO:SUBIR_VOLUMEN" visible="1" print_text=""/>
+					<elem name="vol_behera" msg="VIDEO:BAJAR_VOLUMEN" visible="1" print_text=""/>
+					<elem name="power" msg="VIDEO:ON_OFF" visible="1" print_text=""/>
+					<elem name="tv_ezkerrera" msg="VIDEO:CANAL_IZQUIERDA" visible="1" print_text=""/>
+					<elem name="tv_eskubira" msg="VIDEO:CANAL_DERECHA" visible="1" print_text=""/>
+					<elem name="silenciar" msg="VIDEO:MUTEAR" visible="1" print_text=""/>
+					<elem name="desmutear" msg="VIDEO:DESMUTEAR" visible="1" print_text=""/>
+				</panel>
+				<panel name="play_pause_eta_abar" x="0" y="358.8" visible="1" print_text="">	
+					<elem name="activar" msg="VIDEO:ACTIVAR" visible="1" print_text=""/>
+					<elem name="parar" msg="VIDEO:PARAR" visible="1" print_text=""/>
+					<elem name="pausa" msg="VIDEO:PAUSA" visible="1" print_text=""/>
+					<elem name="retroceder" msg="VIDEO:RETROCEDER" visible="1" print_text=""/>
+					<elem name="avanzar" msg="VIDEO:AVANZAR" visible="1" print_text=""/>
+					<elem name="power" msg="" visible="0" print_text=""/>
+					<elem name="power_off" msg="" visible="0" print_text=""/>
+					<elem name="menu_en_pantalla" msg="" visible="0" print_text="MENU EN PANTALLA"/>
+				</panel>
+			</object>
+			<object name="proyector_central" type="proyector_central" msg="DISPOSITIVO:PROYECTOR_CENTRAL" visible="1" print_text="central" title="PROYECTOR_CENTRAL">
+				<panel name="encender_apagar" x="0" y="0" visible="1" print_text="ENCENDER_APAGAR_PROYECTOR_CENTRAL">	
+					<elem name="encender" msg="PROYECTOR_CENTRAL:ENCENDER" visible="1" feed="1" print_text="ENCENDER"/>
+					<elem name="apagar" msg="PROYECTOR_CENTRAL:APAGAR" visible="1" feed="2" print_text="APAGAR" fun_p="popup_proy"/>
+					<elem name="ajuste_automatico" msg="" visible="0" print_text="AJUSTE AUTOMATICO"/>
+					<elem name="activar" msg="PROYECTOR_CENTRAL:MUTEAR" visible="1" feed="1" print_text="MUTEAR"/>
+					<elem name="desactivar" msg="PROYECTOR_CENTRAL:DESMUTEAR" visible="1" feed="1" print_text="DESMUTEAR"/>
+				</panel>
+				<panel name="seleccion_en_pizarra" x="0" y="195" visible="1" print_text="">	
+					<elem name="dvd" msg="PROYECTOR_CENTRAL:DVD" visible="1" print_text="DVD"/>
+					<elem name="pcsuelo" msg="PROYECTOR_CENTRAL:PCSUELO" visible="1" print_text="PCSUELO"/>
+					<elem name="portatil1" msg="PROYECTOR_CENTRAL:PORTATIL1" visible="1" print_text="PORTATIL1"/>
+					<elem name="portatil2" msg="PROYECTOR_CENTRAL:PORTATIL2" visible="1" print_text="PORTATIL2"/>
+					<elem name="portatil3" msg="PROYECTOR_CENTRAL:PORTATIL3" visible="1" print_text="PORTATIL3"/>
+					<elem name="think_client" msg="PROYECTOR_CENTRAL:THINK_CLIENT" visible="1" print_text="THINK_CLIENT"/>
+					<elem name="camara_de_documentos" msg="PROYECTOR_CENTRAL:CAMARA_DE_DOCUMENTOS" visible="1" print_text="CAMARA_DE_DOCUMENTOS"/>
+					<elem name="dvdgrab" msg="PROYECTOR_CENTRAL:DVDGRAB" visible="1" print_text="DVDGRAB"/>
+					<elem name="atril" msg="PROYECTOR_CENTRAL:ATRIL" visible="1" print_text="ATRIL"/>
+				</panel>
+				<panel name="camaras_a_pantalla" x="0" y="425" visible="0" print_text="">	
+					<elem name="camara1" msg="PROYECTOR_CENTRAL:CAMARA_1" visible="1" print_text="CAMARA_ALUMNO_IZQ"/>
+					<elem name="camara2" msg="PROYECTOR_CENTRAL:CAMARA_2" visible="1" print_text="CAMARA_ALUMNO_DER"/>
+					<elem name="camara3" msg="PROYECTOR_CENTRAL:CAMARA_3" visible="1" print_text="CAMARA_PRESIDENCIA"/>
+				</panel>
+			</object>
+			<object name="plasma" type="plasma" msg="DISPOSITIVO:PLASMA" visible="1" print_text="plasma" title="PLASMA">
+				<panel name="encender_apagar_pantalla" x="0" y="0" visible="1" print_text="ENCENDER_APAGAR_PLASMA">	
+					<elem name="encender" msg="PLASMA:ENCENDER" visible="1" feed="1" print_text="ENCENDER"/>
+					<elem name="apagar" msg="PLASMA:APAGAR" visible="1" feed="1" print_text="APAGAR"/>
+				</panel>
+				<panel name="seleccion_en_pizarra" x="0" y="105" visible="1" feed="0" print_text="">	
+					<elem name="dvd" msg="PLASMA:DVD" visible="1" print_text="DVD"/>
+					<elem name="pcsuelo" msg="PLASMA:PCSUELO" visible="1" print_text="PCSUELO"/>
+					<elem name="portatil1" msg="PLASMA:PORTATIL1" visible="1" print_text="PORTATIL1"/>
+					<elem name="portatil2" msg="PLASMA:PORTATIL2" visible="1" print_text="PORTATIL2"/>
+					<elem name="portatil3" msg="PLASMA:PORTATIL3" visible="1" print_text="PORTATIL3"/>
+					<elem name="think_client" msg="PLASMA:THINK_CLIENT" visible="1" print_text="THINK_CLIENT"/>
+					<elem name="camara_de_documentos" msg="PLASMA:CAMARA_DE_DOCUMENTOS" visible="1" print_text="CAMARA_DE_DOCUMENTOS"/>
+					<elem name="dvdgrab" msg="PLASMA:DVDGRAB" visible="1" print_text="DVDGRAB"/>
+					<elem name="atril" msg="PLASMA:ATRIL" visible="1" print_text="ATRIL"/>
+				</panel>
+			</object>
+			<object name="red_think_client" type="red_think_client" msg="DISPOSITIVO:RED_THINK_CLIENT" visible="1" print_text="RED_THINK_CLIENT" title="RED_THINK_CLIENT">
+				<panel name="seleccion_red_think_client" x="0" y="0" visible="1" feed="0" print_text="">	
+					<elem name="pcsuelo" msg="RED_THINK_CLIENT:PCSUELO" visible="1" print_text="PCSUELO"/>
+					<elem name="portatil1" msg="RED_THINK_CLIENT:PORTATIL1" visible="1" print_text="PORTATIL1"/>
+					<elem name="portatil2" msg="RED_THINK_CLIENT:PORTATIL2" visible="1" print_text="PORTATIL2"/>
+					<elem name="portatil3" msg="RED_THINK_CLIENT:PORTATIL3" visible="1" print_text="PORTATIL3"/>
+					<elem name="think_client" msg="RED_THINK_CLIENT:THINK_CLIENT" visible="1" print_text="THINK_CLIENT"/>
+					<elem name="camara_de_documentos" msg="RED_THINK_CLIENT:CAMARA_DE_DOCUMENTOS" visible="1" print_text="CAMARA_DE_DOCUMENTOS"/>
+					<elem name="atril" msg="RED_THINK_CLIENT:ATRIL" visible="1" print_text="ATRIL"/>
+				</panel>
+				<panel name="camaras_a_pantalla" x="0" y="230" visible="0" print_text="">	
+					<elem name="camara1" msg="RED_THINK_CLIENT:CAMARA_1" visible="1" print_text="CAMARA_ALUMNO_IZQ"/>
+					<elem name="camara2" msg="RED_THINK_CLIENT:CAMARA_2" visible="1" print_text="CAMARA_ALUMNO_DER"/>
+					<elem name="camara3" msg="RED_THINK_CLIENT:CAMARA_3" visible="1" print_text="CAMARA_PRESIDENCIA"/>
+				</panel>
+			</object>						
+		</principal>
+		<luces msg="MENU:LUCES" print_text="LUCES">
+			<grupos>
+				<grupo name="presi_techo" visible="1" print_text="PRESI">
+					<elem name="gora" msg="LUZ:TECHO:PRESI_SUBIR" visible="1" print_text=""/>
+					<elem name="behera" msg="LUZ:TECHO:PRESI_BAJAR" visible="1" print_text=""/>
+					<elem name="encender" msg="LUZ:TECHO:PRESI_ENCENDER" visible="1" feed="1" print_text="ENCENDER"/>
+					<elem name="apagar" msg="LUZ:TECHO:PRESI_APAGAR" visible="1" feed="1" print_text="APAGAR"/>
+				</grupo>
+				<grupo name="pasillo_techo" visible="1" print_text="PASILLO">
+					<elem name="gora" msg="LUZ:TECHO:PASILLO_SUBIR" visible="1" print_text=""/>
+					<elem name="behera" msg="LUZ:TECHO:PASILLO_BAJAR" visible="1" print_text=""/>
+					<elem name="encender" msg="LUZ:TECHO:PASILLO_ENCENDER" visible="1" feed="1" print_text="ENCENDER"/>
+					<elem name="apagar" msg="LUZ:TECHO:PASILLO_APAGAR" visible="1" feed="1" print_text="APAGAR"/>
+				</grupo>
+				<grupo name="alumnos_techo" visible="1" print_text="ALUMNOS">
+					<elem name="gora" msg="LUZ:TECHO:ALUMNOS_SUBIR" visible="1" print_text=""/>
+					<elem name="behera" msg="LUZ:TECHO:ALUMNOS_BAJAR" visible="1" print_text=""/>
+					<elem name="encender" msg="LUZ:TECHO:ALUMNOS_ENCENDER" visible="1" feed="1" print_text="ENCENDER"/>
+					<elem name="apagar" msg="LUZ:TECHO:ALUMNOS_APAGAR" visible="1" feed="1" print_text="APAGAR"/>
+				</grupo>
+				<grupo name="pasillo_suelo" visible="1" print_text="PASILLO">
+					<elem name="gora" msg="LUZ:SUELO:PASILLO_SUBIR" visible="1" print_text=""/>
+					<elem name="behera" msg="LUZ:SUELO:PASILLO_BAJAR" visible="1" print_text=""/>
+					<elem name="encender" msg="LUZ:SUELO:PASILLO_ENCENDER" visible="1" feed="1" print_text="ENCENDER"/>
+					<elem name="apagar" msg="LUZ:SUELO:PASILLO_APAGAR" visible="1" feed="1" print_text="APAGAR"/>
+				</grupo>
+				<grupo name="alumnos_suelo" visible="1" print_text="ALUMNOS">
+					<elem name="gora" msg="LUZ:SUELO:ALUMNOS_SUBIR" visible="1" print_text=""/>
+					<elem name="behera" msg="LUZ:SUELO:ALUMNOS_BAJAR" visible="1" print_text=""/>
+					<elem name="encender" msg="LUZ:SUELO:ALUMNOS_ENCENDER" visible="1" feed="1" print_text="ENCENDER"/>
+					<elem name="apagar" msg="LUZ:SUELO:ALUMNOS_APAGAR" visible="1" feed="1" print_text="APAGAR"/>
+				</grupo>				
+			</grupos>
+			<elems>
+				<elem name="todas_luces" msg="LUZ:ENCENDER_SALA" visible="1" feed="2" print_text="TODAS_LUCES"/>
+				<elem name="apagar_todo" msg="LUZ:APAGAR_SALA" visible="1" feed="2" print_text="APAGAR_TODO"/>
+				<elem name="encender_techo" msg="LUZ:TECHO:ENCENDER" visible="1" feed="2" print_text="ENCENDER_TECHO"/>
+				<elem name="apagar_techo" msg="LUZ:TECHO:APAGAR" visible="1" feed="2" print_text="APAGAR_TECHO"/>
+				<elem name="encender_suelo" msg="LUZ:SUELO:ENCENDER" visible="1" feed="2" print_text="ENCENDER_SUELO"/>
+				<elem name="apagar_suelo" msg="LUZ:SUELO:APAGAR" visible="1" feed="2" print_text="APAGAR_SUELO"/>
+				<elem name="maximo_suelo" msg="LUZ:SUELO:MAXIMO" visible="0" print_text="MAXIMO_SUELO"/>
+				<elem name="medio_suelo" msg="LUZ:SUELO:MEDIO" visible="0" print_text="MEDIO_SUELO"/>
+				<elem name="minimo_suelo" msg="LUZ:SUELO:MINIMO" visible="0" print_text="MINIMO_SUELO"/>
+			</elems>			
+		</luces>
+		<apagar msg="MENU:APAGAR" print_text="APAGAR">
+			<apagar msg="SISTEMA:APAGAR" visible="1" print_text="apagar"/>			
+		</apagar>
+	</menu_items>
+</sinta>

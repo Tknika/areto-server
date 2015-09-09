@@ -1,0 +1,6 @@
+########################################
+##########PANTALLA ACTIVA###############
+########################################
+Pantalla.activa=1
+Lcd.activa=PANTALLA_PRESIDENCIA
+Proyector.activo=PROYECTOR_CENTRAL
