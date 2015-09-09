@@ -2,7 +2,7 @@
 
 **Areto** is an open source automation software designed for conference rooms. We use it to control projectors, lights, audio system, TV screens, etc...
 
-**Areto-Server** talks to different devices (projectors, extron, light controller, etc) and translates this information to the UI web frontend (see **areto-ui**).
+**Areto-Server** talks to different devices (projectors, extron, light controller, etc) and translates this information to the web frontend. It was initially designed in 2009 to work with a Flash UI and recently in 2015 modified to work with the new **areto-ui** HTML5 interface.
 
 ```
 ## Required PHP packages
