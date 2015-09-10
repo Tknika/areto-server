@@ -21,7 +21,7 @@ Create database and import the dump:
 
 ```sh
 mysql -u root -p -e "create database areto;"
-mysql -u root -p areto < areto.sql
+mysql -u root -p areto < db/areto.sql
 ```
 
 Configure database access in the file `dao/DaoAccess.php`:
