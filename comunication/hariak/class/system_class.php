@@ -1,7 +1,4 @@
-<?
-
-
-
+<?php
 
 class system_class{
 	function system_class(){

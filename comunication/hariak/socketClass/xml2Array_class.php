@@ -1,4 +1,4 @@
-<?
+<?php
 class xml2Array {
 	 function parse_cmd($strInputXML) {
 	 	/* <pulse volume=[up][do][0-10] /> 
