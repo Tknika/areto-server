@@ -12,7 +12,10 @@ class ControladorGuiSistema {
     private $sistema="BIENVENIDO";
     public function  __construct() {
         $this->sistema=new Sistema();
-        AccesoGui::__construct();
+        #AccesoGui::__construct();
+        # No se puede llamar a __construct, al no ser estático (un constructor no puede ser estático)
+        # Se ha solucionado de forma provisional instanciando la clase
+	      $agui = new AccesoGui();
     }
     public function iniciarSistema() {
         AccesoGui::$guiSistema->esperarInicioSistema(2);
@@ -24,9 +27,9 @@ class ControladorGuiSistema {
         if($alert==1 && empty($message)){
             $message="OK";
         }
-        
+
 	AccesoGui::$guiSistema->enviarResultadoComprobacionSistema($message);
-        
+
 
 
     }
