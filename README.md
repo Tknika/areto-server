@@ -24,7 +24,12 @@ mysql -u root -p -e "create database areto;"
 mysql -u root -p areto < db/areto.sql
 ```
 
-Configure database access in the file `dao/DaoAccess.php`:
+Create the file `dao/DaoAccess.php` from template:
+
+```sh
+cp dao/DaoAccess.php.dist dao/DaoAccess.php
+```
+Edit the file with your database configuration:
 
 ```php
 $strHost = 'localhost'

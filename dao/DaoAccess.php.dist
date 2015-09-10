@@ -1,0 +1,65 @@
+<?php
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of DaoAccess
+ *
+ * @author amaia
+ */
+class DaoAccess {
+    //put your code here
+    private static $strHost='localhost';    // Database hostname
+    private static $strUser='root';         // Database username
+    private static $strPassword='password'; // Database password
+    private static $strDatabase='areto'     // Database name
+    private static $link;
+
+    private static $result;
+    private function  __construct() {
+
+    }
+    public static function conectar(){
+        self::$link = mysql_connect(self::$strHost,self::$strUser,self::$strPassword) or die('Could not connect: ' . mysql_error());
+        echo 'Connected successfully';
+        mysql_select_db($strDatabase) or die('Could not select database');
+    }
+    public static function desconectar() {
+        mysql_close(self::$link);
+    }
+    public static function ejecutarSQLQuery($pStrSQL) {
+        $listaComandos=array();
+        self::$result = mysql_query($pStrSQL) or die('Query failed: ' . mysql_error());
+        echo "\n";
+        $i=0;
+        while($row=mysql_fetch_array(self::$result))
+        {
+            $listaComandos[$i]['nombre']=$row['nombre'];
+            $listaComandos[$i]['cadena']=$row['cadena'];
+            $i++;
+        }
+
+        return $listaComandos;
+    }
+    public static function ejecutarSQLQuery1($pStrSQL) {
+
+        $lista=array();
+        self::$result = mysql_query($pStrSQL) or die('Query failed: ' . mysql_error());
+        echo "\n";
+
+        while($row=mysql_fetch_array(self::$result))
+        {
+
+            $lista['id_disp']=$row[0];
+            $lista['tipo']=$row[1];
+            $lista['marca']=$row[2];
+            $lista['modelo']=$row[3];
+            $lista['descripcion']=$row[4];
+
+        }
+        return $lista;
+    }
+}
+?>
