@@ -1,3 +1,4 @@
 *.properties
 dao/DaoAccess.php
 *.odt
+pantallaActiva.properties.bak
