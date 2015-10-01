@@ -107,13 +107,11 @@ class SocketClass {
             AccesoControladoresDispositivos::$ctrlAutomata->procesarComandoSala($cmd[1]);
             
         }else{
-	    self::$sockkk=socket;
-
 	    //AMAIARI AGINDUA
             //system_class::log_message("Command:: ".print_r($command,1));
 
             ConexionServidorCliente::procesarComandoPantalla($command["value"]);
-	    system_class::log_message("Command:: -------------------------FIN-----------");
+	    system_class::log_message("\nCommand:: -------------------------FIN-----------\n\n");
         }
 
     }
@@ -224,7 +222,7 @@ class SocketClass {
                         $this->quit_socket($socket);
                         continue;
                     }else {
-                        system_class::log_message("\n\n @@@jaso cmd berria=============>".$buffer."<===================\n");
+                        system_class::log_message("\n\n @@@jaso cmd berria====>".trim($buffer)."<=====\n");
                         $arr_buf=explode('>',$buffer);
                         
                         foreach($arr_buf as $buf) {

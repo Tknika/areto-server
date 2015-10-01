@@ -28,7 +28,15 @@ class GUI_Menus {
     public function setMenu( $menu ) {
         $this->menu=$menu;
         $this->enviarMenu();
-        $this->activarPantalla();
+        
+	if (strstr($menu,'ESCENARIO') !== false){
+	  $this->activarPantalla(3);
+	}else{
+	  $this->activarPantalla(2);
+	}
+	
+
+
     //activar pantalla enviar menu
     } // end of member function setMenu
 
@@ -50,6 +58,7 @@ class GUI_Menus {
      */
     public function escenarioMenu( ) {
         $this->setMenu("ESCENARIOS");
+	//$this->activarPantalla(3)
     } // end of member function escenarioMenu
 
     ////////////////errepikatua/////////////
@@ -58,6 +67,8 @@ class GUI_Menus {
 	  $this->setMenu("ESCENARIOS:ON");
 	else
 	  $this->setMenu("ESCENARIOS");
+
+	$this->activarPantalla(3);
     }
 
     /**
@@ -138,14 +149,12 @@ class GUI_Menus {
      * @return
      * @access public
      */
-   public function activarPantalla() {
+   public function activarPantalla($id_pantalla=2) {
 
-
-            $pantallaActual=new Properties();
+        $pantallaActual=new Properties();
         $pantallaActual->load(file_get_contents("./pantallaActiva.properties"));
-            $pantallaActual->setProperty("Pantalla.activa",2);
+        $pantallaActual->setProperty("Pantalla.activa",$id_pantalla);
         file_put_contents('./pantallaActiva.properties',     $pantallaActual->toString(true));
-
 
        // $this->pantalla_activa=$pantalla;
     } // end of member function setPantallaActiva

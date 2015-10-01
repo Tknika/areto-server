@@ -74,11 +74,17 @@ class Proyector extends DispositivoIP {
     private $respuestaDispositivo;
     private $last_status;
 
+    
+
     function  __construct($dispositivo) {
+
+	//$this->estadoDispositivo=new Properties();
 
         $this->tipoDispositivo="Proyector";
         parent::__construct($dispositivo);
         echo($this->ip."-".$this->modeloIPLT."-".$this->strMarca."-".$this->strModelo."-".$this->id_disp."-".$this->tipoPuerto."-".$this->numeroPuerto."-".$this->baudRate."-".$this->timeOut."-".$this->puerto."-".$this->password);
+
+	$this->loadEstado();
 
     }
 
@@ -91,14 +97,16 @@ class Proyector extends DispositivoIP {
      * @link Properties::guardarEstado()
      */
     public function encender( ) {
-
+	$this->loadEstado();
         $comando=$this->comandos1[DaoControl::$ENCENDER];
         $comando=$this->procesarComando($comando,"");
         $this->enviarComando($comando);
         //$this->setEstado(self::$ON);
-        //$this->encendido=true;
-        $this->guardarEstado();
-	$this->desmutear();
+	//$this->encendido=true;
+	$this->estado();
+        //$this->guardarEstado();
+	//$this->desmutear();
+	
                    
     } // end of member function encender
 
@@ -111,13 +119,15 @@ class Proyector extends DispositivoIP {
      * @link Properties::guardarEstado()
      */
     public function apagar( ) {
-
+	$this->loadEstado();
         $comando=$this->comandos1[DaoControl::$APAGAR];
         $comando=$this->procesarComando($comando,"");
         $respuesta=$this->enviarComando($comando);
         //$this->setEstado(self::$OFF);
         //$this->encendido=false;
-        $this->guardarEstado();
+	//$this->mutear();
+        //$this->guardarEstado();
+	$this->estado();
 	return $respuesta;
 
     } // end of member function apagar
@@ -175,11 +185,12 @@ class Proyector extends DispositivoIP {
      * @link Properties::guardarEstado()
      */
     public function mutear( ) {
-
+	$this->loadEstado();
         $comando=$this->comandos1[DaoControl::$MUTEAR];
         $comando=$this->procesarComando($comando,"");
         $respuesta=$this->enviarComando($comando);
-	self::$MUTE='ON';
+	//self::$MUTE='ON';
+	$this->mute='ON';
 	//$this->setEstado(self::$MUTE);
 	$this->guardarEstado();
 	return $respuesta;
@@ -194,14 +205,16 @@ class Proyector extends DispositivoIP {
      * @link Properties::guardarEstado()
      */
     public function desmutear( ) {
-
+	$this->loadEstado();
         $comando=$this->comandos1[DaoControl::$DESMUTEAR];
         $comando=$this->procesarComando($comando,"");
         $respuesta=$this->enviarComando($comando);
-	self::$MUTE='OFF';
+	//self::$MUTE='OFF';
+	$this->mute='OFF';
 
 	//$this->setEstado();
 	$this->guardarEstado();
+
 	return $respuesta;
     } // end of member function desmutear
 
@@ -233,38 +246,39 @@ class Proyector extends DispositivoIP {
 
     } // end of member function temperaturaLampara
 
+
     /**
-     * Metordo para ver el estado del proyector
+     * Metodo para calcular y enviar el estado del proyector
      *
      * @access public
      */
-    public function estado( ) {
-	        
-	if(!empty($this->last_status)){
-	  $now=time();
-	  $last=split(':',$this->last_status);
-	  if($now-$last[0]<3){
-	    unset($last[0]);
-	    return implode(':',$last);
-	  }
+    
+
+    public function estado($f=false) {
+
+	$this->loadEstado();
+
+	$now=time();
+	if(!$f && $now - $this->last_time < 3){
+	  return $this->result;
 	}
 
 	$comando=$this->comandos1[DaoControl::$ESTADO];
         $comando=$this->procesarComando($comando,"");
 	//CR0,error(08|10|21|81|88),ok(00|04|20|24|28|40|80)
 
-	$estados=array('00'=>'Projector is ON.',
-	'04'=>'Lamps are off due to Power Management.',
-	'08'=>'Abnormal Temperature results if status 28 doesn’t work',
-	'10'=>'Power failure.',
-	'20'=>'Projector just shut off and is in 90 second cool down mode.',
-	'21'=>'Because of lamp failure, the power is off (cooling down)',
-	'24'=>'Processing power save, cooling down',
-	'28'=>'Temperature warning and cooling down.',
-	'40'=>'Projector just powered up and is currently in 30 sec. countdown',
-	'80'=>'Projector is OFF (Standby).',
-	'81'=>'Stand By after cooling down because of lamp failure',
-	'88'=>'Temperature warning occurred and system has recovered.'
+	$estados=array(0=>'Projector is ON.',
+	4=>'Lamps are off due to Power Management.',
+	8=>'Abnormal Temperature results if status 28 doesn’t work',
+	10=>'Power failure.',
+	20=>'Projector just shut off and is in 90 second cool down mode.',
+	21=>'Because of lamp failure, the power is off (cooling down)',
+	24=>'Processing power save, cooling down',
+	28=>'Temperature warning and cooling down.',
+	40=>'Projector just powered up and is currently in 30 sec. countdown',
+	80=>'Projector is OFF (Standby).',
+	81=>'Stand By after cooling down because of lamp failure',
+	88=>'Temperature warning occurred and system has recovered.'
 	);
 
         $respuesta=$this->enviarComando($comando);
@@ -272,15 +286,19 @@ class Proyector extends DispositivoIP {
 	  sleep(2);
 	  $respuesta=$this->enviarComando($comando);
 	}
-	
-	$this->cod_estado=$respuesta;
-	$this->last_status=time().":".$respuesta;
 
+	$respuesta=intval($respuesta);
+	$this->cod_estado=$respuesta;
+	
 	$result=$respuesta;
 	if($respuesta==0 ){ 
 	  $this->encendido=1;
 	  $result="ON";
-	}else if($respuesta==80 || $respuesta==40||$respuesta==04 ){ 
+	}else if($respuesta==40 ){
+	  $this->encendido=0;
+	  $result="DISABLED";
+	}else if($respuesta==80 ||$respuesta==4 ){ 
+	//}else if($respuesta==80 || $respuesta==40||$respuesta==4 ){ 
 	  $this->encendido=0;
 	  $result="OFF";
 	}else{
@@ -292,7 +310,12 @@ class Proyector extends DispositivoIP {
 	}else{
 	  $st=$result;
 	}
-	$this->last_status=time().":".$st;
+
+	if($this->encendido==0){
+	  $this->mute='OFF';
+	}
+	
+	$this->result=$st;
 	$this->guardarEstado();
 	return $st;
 
@@ -306,6 +329,7 @@ class Proyector extends DispositivoIP {
      * @access public
      */
     public function isEncendido( ) {
+	$this->loadEstado();
 	//$this->estado( );
         return $this->encendido;
 
@@ -313,11 +337,29 @@ class Proyector extends DispositivoIP {
 
 
     public function is_mute() {
+      $this->loadEstado();
 
-      if(self::$MUTE == 'ON')
+      /*$this->estadoDispositivo=new Properties();
+      $this->estadoDispositivo->load(file_get_contents("./estadoDispositivos.properties"));
+      
+      if( $this->estadoDispositivo->getProperty($this->disp.".mute") == 'ON'){
+	self::$MUTE='ON';
 	return true;
-      else
+      }else{
+	self::$MUTE='OFF';
 	return false;
+      }*/
+
+      if($this->mute=='ON'){
+	return true;
+      }else{
+	return false;
+      }
+
+
+
+
+
     }
 
     /**
@@ -341,13 +383,30 @@ class Proyector extends DispositivoIP {
      * Guarda los valores de los atributos en el archivo estadoDispositivos.properties
      */
     public function guardarEstado() {
-	$this->estado();
+	//$this->estado();
         $this->estadoDispositivo=new Properties();
         $this->estadoDispositivo->load(file_get_contents("./estadoDispositivos.properties"));
         $this->estadoDispositivo->setProperty($this->disp.".estado",$this->cod_estado);
+	$this->estadoDispositivo->setProperty($this->disp.".result",trim($this->result));
+	$this->estadoDispositivo->setProperty($this->disp.".time",time());
         $this->estadoDispositivo->setProperty($this->disp.".encendido",$this->encendido);
-	$this->estadoDispositivo->setProperty($this->disp.".mute",self::$MUTE);
+	$this->estadoDispositivo->setProperty($this->disp.".mute",$this->mute);
         file_put_contents('./estadoDispositivos.properties', $this->estadoDispositivo->toString(true));
+
+    }
+
+     /*
+     * Cargar ultimo estado desde el archivo estadoDispositivos.properties
+     */
+    public function loadEstado() {
+	//$this->estado();
+        $this->estadoDispositivo=new Properties();
+        $this->estadoDispositivo->load(file_get_contents("./estadoDispositivos.properties"));
+        $this->cod_estado=intval($this->estadoDispositivo->getProperty($this->disp.".estado"));
+	$this->result=$this->estadoDispositivo->getProperty($this->disp.".result");
+        $this->encendido=$this->estadoDispositivo->getProperty($this->disp.".encendido");
+	$this->mute=$this->estadoDispositivo->getProperty($this->disp.".mute");
+	$this->last_time=$this->estadoDispositivo->getProperty($this->disp.".time");
 
     }
 

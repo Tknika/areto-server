@@ -186,8 +186,8 @@ public function escenarioPelicula( ) {
 */
 public function enviarComando( ) {
 
-    $cmd = new ComandoFlash("ESCENARIO", $this->getComando(), "");
-		$this->enviarPeticion($cmd->getComando());
+    $cmd = new ComandoFlash("MENU","ESCENARIOS", $this->getComando(), "");
+    $this->enviarPeticion($cmd->getComando());
 
 } // end of member function enviarComando
 
@@ -225,6 +225,7 @@ public function enviarPeticion( $comando ) {
 */
  public function activarPantalla() {
 
+	echo "\n\n ACTIVAR PANTALLA ESCENARIOS\n\n";
 
             $pantallaActual=new Properties();
         $pantallaActual->load(file_get_contents("./pantallaActiva.properties"));
@@ -242,6 +243,7 @@ public function enviarPeticion( $comando ) {
 public function dibujarPantalla( ) {
 
     $this->enviarComando();
+    $this->activarPantalla();
 
 } // end of member function dibujarPantalla
 

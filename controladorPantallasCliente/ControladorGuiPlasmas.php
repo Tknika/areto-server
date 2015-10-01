@@ -45,6 +45,15 @@ class ControladorGuiPlasmas {
 
     } // end of member function apagar
 
+
+    public function estado( ) {
+
+        $respuesta=AccesoControladoresDispositivos::$ctrlPlasma->estadoPlasma();
+
+    } // end of member function apagar
+
+
+
     /**
      * Metodo para mostrar en el plasma el pc de la sala, para ello activara la
      * entrada VGA del plasma y enrutara el video y el audio(el audio al canal7???)
@@ -220,38 +229,40 @@ class ControladorGuiPlasmas {
         }
     } // end of member function verGrabadorDVDEnPlasma
 
-    //    /**
-    //     *
-    //     *
-    //     * @return
-    //     * @access public
-    //     */
-    //    public function verCamara1EnPlasma( ) {
-    //        AccesoControladoresDispositivos::$ctrlPlasma->verCamara1EnPlasma();
-    //         AccesoGui::$guiPlasma->verCamaraEnPlasma(1);
-    //    } // end of member function verCamara1EnPlasma
-    //
-    //    /**
-    //     *
-    //     *
-    //     * @return
-    //     * @access public
-    //     */
-    //    public function verCamara2EnPlasma( ) {
-    //        AccesoControladoresDispositivos::$ctrlPlasma->verCamara2EnPlasma();
-    // AccesoGui::$guiPlasma->verCamaraEnPlasma(2);
-    //    } // end of member function verCamara2EnPlasma
-    //
-    //    /**
-    //     *
-    //     *
-    //     * @return
-    //     * @access public
-    //     */
-    //    public function verCamara3EnPlasma( ) {
-    //        AccesoControladoresDispositivos::$ctrlPlasma->verCamara3EnPlasma();
-    // AccesoGui::$guiPlasma->verPCamaraEnPlasma(3);
-    //    } // end of member function verCamara3EnPlasma
+    /**
+    *
+    *
+    * @return
+    * @access public
+    */
+    public function verCamara1EnPlasma( ) {
+	AccesoControladoresDispositivos::$ctrlPlasma->verCamara1EnPlasma();
+	AccesoGui::$guiPlasma->verCamaraEnPlasma(1);
+    } // end of member function verCamara1EnPlasma
+    
+
+
+    /**
+    *
+    *
+    * @return
+    * @access public
+    */
+    public function verCamara2EnPlasma( ) {
+      AccesoControladoresDispositivos::$ctrlPlasma->verCamara2EnPlasma();
+      AccesoGui::$guiPlasma->verCamaraEnPlasma(2);
+    } // end of member function verCamara2EnPlasma
+    
+    /**
+    *
+    *
+    * @return
+    * @access public
+    */
+    public function verCamara3EnPlasma( ) {
+      AccesoControladoresDispositivos::$ctrlPlasma->verCamara3EnPlasma();
+      AccesoGui::$guiPlasma->verPCamaraEnPlasma(3);
+    } // end of member function verCamara3EnPlasma
 
     /**
      * Metodo para mostrar en el plasma el redThinkClient seleccionado, para ello
@@ -314,49 +325,35 @@ class ControladorGuiPlasmas {
     public function getComandoFlash($cmd) {
         if (strcmp($cmd->getAccion(),"ENCENDER")==0) {
             $this->encender();
+        }else if (strcmp($cmd->getAccion(),"APAGAR")==0) {
+            $this->apagar();
+        }else if (strcmp($cmd->getAccion(),"PCSUELO")==0) {
+            $this->verPCSalaEnPlasma();
+        }else if (strcmp($cmd->getAccion(),"PORTATIL1")==0) {
+            $this->verPortatil1EnPlasma();
+        }else if (strcmp($cmd->getAccion(),"PORTATIL2")==0) {
+            $this->verPortatil2EnPlasma();
+        }else if (strcmp($cmd->getAccion(),"PORTATIL3")==0) {
+            $this->verPortatil3EnPlasma();
+        }else if (strcmp($cmd->getAccion(),"PORTATIL4")==0) {
+            $this->verPortatil4EnPlasma();
+        }else if (strcmp($cmd->getAccion(),"ATRIL")==0) {
+            $this->verAtrilEnPlasma();
+        }else if (strcmp($cmd->getAccion(),"THINK_CLIENT")==0) {
+            $this->verRedThinkClientEnPlasma();
+        }else if (strcmp($cmd->getAccion(),"CAMARA_DE_DOCUMENTOS")==0) {
+            $this->verVisorDocumentosEnPlasma();
+        }else if (strcmp($cmd->getAccion(),"DVD")==0) {
+            $this->verDVDEnPlasma();
+        }else if (strcmp($cmd->getAccion(),"DVDGRAB")==0) {
+            $this->verGrabadorDVDEnPlasma();
+        }else if (strcmp($cmd->getAccion(),"CAMARA_1")==0) {
+            $this->verCamara1EnPlasma();
+        }else if (strcmp($cmd->getAccion(),"CAMARA_2")==0) {
+            $this->verCamara2EnPlasma();
+        }else if (strcmp($cmd->getAccion(),"CAMARA_3")==0) {
+            $this->verCamara3EnPlasma();
         }
-        else if (strcmp($cmd->getAccion(),"APAGAR")==0) {
-                $this->apagar();
-            }
-            else if (strcmp($cmd->getAccion(),"PCSUELO")==0) {
-                    $this->verPCSalaEnPlasma();
-                }
-                else if (strcmp($cmd->getAccion(),"PORTATIL1")==0) {
-                        $this->verPortatil1EnPlasma();
-                    }
-                    else if (strcmp($cmd->getAccion(),"PORTATIL2")==0) {
-                            $this->verPortatil2EnPlasma();
-                        }
-                        else if (strcmp($cmd->getAccion(),"PORTATIL3")==0) {
-                                $this->verPortatil3EnPlasma();
-                            }
-                            else if (strcmp($cmd->getAccion(),"PORTATIL4")==0) {
-                                    $this->verPortatil4EnPlasma();
-                                }
-                                else if (strcmp($cmd->getAccion(),"ATRIL")==0) {
-                                        $this->verAtrilEnPlasma();
-                                    }
-                                    else if (strcmp($cmd->getAccion(),"THINK_CLIENT")==0) {
-                                            $this->verRedThinkClientEnPlasma();
-                                        }
-                                        else if (strcmp($cmd->getAccion(),"CAMARA_DE_DOCUMENTOS")==0) {
-                                                $this->verVisorDocumentosEnPlasma();
-                                            }
-                                            else if (strcmp($cmd->getAccion(),"DVD")==0) {
-                                                    $this->verDVDEnPlasma();
-                                                }
-                                                else if (strcmp($cmd->getAccion(),"DVDGRAB")==0) {
-                                                        $this->verGrabadorDVDEnPlasma();
-                                                    }
-                                                    else if (strcmp($cmd->getAccion(),"CAMARA_1")==0) {
-                                                            $this->verCamara1EnPlasma();
-                                                        }
-                                                        else if (strcmp($cmd->getAccion(),"CAMARA_2")==0) {
-                                                                $this->verCamara2EnPlasma();
-                                                            }
-                                                            else if (strcmp($cmd->getAccion(),"CAMARA_3")==0) {
-                                                                    $this->verCamara3EnPlasma();
-                                                                }
 
     }
 

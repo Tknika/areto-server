@@ -30,6 +30,12 @@ class ControladorPlasma {
         self::$plasma=new Plasma("Plasma");
 
     }
+
+    public function estadoPlasma(){
+      $respuesta=self::$plasma->estadoPlasma();
+
+    }
+
     /**
      * Metodo para encender el plasma
      *
@@ -37,30 +43,28 @@ class ControladorPlasma {
      */
     public function encender() {
         $respuesta=self::$plasma->estadoPlasma();
-        if(!empty ($respuesta)) {
-            if(strcmp($respuesta,"ER401")==0) {
-                echo "error al preguntar por el estado del plasma\n";
-                return 1;
-            }
-            else if(strpos($respuesta,"QPW:0")!==false) {
-                echo "plasma->encender\n";
-                $respuesta=self::$plasma->encender();
-                if(strcmp($respuesta,"ER401")==0) {
-                    echo "error al encender el plasma\n";
-                    return 1;
+	if ( $respuesta == 'OFF' ){
+	  echo "plasma->encender\n";
+	  $respuesta=self::$plasma->encender();
+	}
 
-                }else
-                    return 0;
+	/*
+	$respuesta=self::$plasma->estadoPlasma();
+	if($respuesta==1){
+	  echo "error al preguntar por el estado del plasma\n";
+	  return 1;
+	}
+	else if(strpos($respuesta,"QPW:0")!==false){
+	  $respuesta=self::$plasma->encender();
+	  if($respuesta==1){
+	    echo "error al encender el plasma\n";
+	    return 1;
+	  }else
+	    return 0;		
+	  }//si ya esta encendido no hace falta encender
+	    else return 0;
 
-            }//si ya esta encendido no hace falta encender
-            else {
-                echo "si ya esta encendido no hace falta encender\n";
-                return 0;
-            }
-        }else{
-             echo "HEMEN SARTZEN DA\n";
-            return 1;
-        }
+	  */
     } // end of member function encender
 
     /**
@@ -68,26 +72,31 @@ class ControladorPlasma {
      *
      *@access public
      */
-    public function apagar( ) {
-        $respuesta=self::$plasma->estadoPlasma();
-        if(!empty ($respuesta)) {
-            if(strcmp($respuesta,"ER401")==0) {
-                echo "error al preguntar por el estado del plasma\n";
-                return 1;
-            }
-            else if(strpos($respuesta,"QPW:1")!==false) {
-                $respuesta=self::$plasma->apagar();
-                if(strcmp($respuesta,"ER401")==0) {
-                    echo "error al encender el plasma\n";
-                    return 1;
+    public function apagar() {
 
-                }else
-                    return 0;
+	$respuesta=self::$plasma->estadoPlasma();
+	if ( $respuesta == 'ON' ){
+	  echo "plasma->apagar\n";
+	  $respuesta=self::$plasma->apagar();
+	}
 
-            }//si ya esta encendido no hace falta encender
-            else return 0;
-        }else return 1;
-        // self::$plasma->apagar();
+	/*
+	$respuesta=self::$plasma->estadoPlasma();
+	if($respuesta==1){
+	  echo "error al preguntar por el estado del plasma\n";
+	  return 1;
+	}
+	else if(strpos($respuesta,"QPW:1")!==false){
+	$respuesta=self::$plasma->apagar();
+	if($respuesta==1){
+	  echo "error al encender el plasma\n";
+	  return 1;
+	}else
+	  return 0;		
+	}//si ya esta encendido no hace falta encender
+	else return 0;*/
+
+
 
     } // end of member function apagar
 

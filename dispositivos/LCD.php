@@ -85,19 +85,31 @@ $respuesta=$this->procesarRespuesta($respuesta);
      */
     public function getEstado($funcion) {
 
+echo "\nGETESTADO_LCD.111...LCD:: time::: ".time();
         $this->pip[$this->id_disp]=false;
         $comando=$this->comandos1[DaoControl::$ESTADO];
         $comando=$this->procesarComando($comando,array("id"=>$this->parametroComando,"funcion"=>$funcion));
+echo "\nGETESTADO_LCD..222..LCD:: ".$comando." time::: ".time();
         $respuesta=$this->enviarComando($comando);
+echo "\nGETESTADO_LCD...333.LCD:: ".$respuesta." time::: ".time();
 $respuesta=$this->procesarRespuesta($respuesta);
+
+echo "\nGETESTADO_LCD.444..LCD:: ".print_r($respuesta,1)." time::: ".time();
         return $respuesta;
     }
+
+
     public function procesarRespuesta($respuesta) {
+
+	echo "\nRESPUESLCD.ESATDO!!....LCD:: ".$respuesta;
+
         $estado=split(" ", $respuesta);
         $respuestaTratada["funcion"]=$estado[0];
         $respuestaTratada["identificador"]=$estado[1];
         $respuestaTratada["estado"]=$estado[2];
-print_r($respuestaTratada);
+
+echo "\nRESPUE LCD::: ".print_r($respuestaTratada);
+
         return $respuestaTratada;
     }
 
@@ -113,6 +125,7 @@ print_r($respuestaTratada);
         usleep(4000000);
         $this->pip[$this->id_disp]=true;
         $comando=$this->comandos1[DaoControl::$PIP];
+
         $comando=$this->procesarComando($comando,array("id"=>$this->parametroComando));
         $respuesta=$this->enviarComando($comando);
         $respuesta=$this->procesarRespuesta($respuesta);
@@ -159,6 +172,7 @@ print_r($respuestaTratada);
         usleep(4000000);
         $comando=$this->comandos1[DaoControl::$FUENTEPIP];
         $this->idPip=$idPip;
+
         $comando=$this->procesarComando($comando,array("id"=>$this->parametroComando));
         $respuesta=$this->enviarComando($comando);
         $respuesta=$this->procesarRespuesta($respuesta);
@@ -229,16 +243,20 @@ print_r($respuestaTratada);
      */
     public function procesarComando($comando,$parametro) {
 
-        $comando=$comando.($this->vcNum);
-        $comando=$comando.$this->idPip;
-        //solo para el estado del lcd
+	if(!is_array($parametro)){
+	  $parametro=array('id'=>$parametro);
+	}
+
+	$comando=$comando.($this->vcNum);
+	$comando=$comando.$this->idPip;
+	//solo para el estado del lcd
         if(isset($parametro["funcion"]))
             $comando=str_replace("\$func$",$parametro["funcion"],$comando);
         $comando=str_replace("\$id$",$parametro["id"], $comando);
         $comando=$comando."\n";
         $this->vcNum="";
         $this->idPip="";
-        return $comando;
+	return $comando;
     }
 
     
@@ -249,8 +267,8 @@ print_r($respuestaTratada);
         parent::guardarEstado();
         $this->estadoDispositivo=new Properties();
         $this->estadoDispositivo->load(file_get_contents("./estadoDispositivos.properties"));
-        $this->estadoDispositivo->setProperty($this->disp.".pip",$this->pip);
-        file_put_contents('./estadoDispositivos.properties', $this->estadoDispositivo->toString(true));
+	$this->estadoDispositivo->setProperty($this->disp.".pip",serialize($this->pip));
+	file_put_contents('./estadoDispositivos.properties', $this->estadoDispositivo->toString(true));
 
     }
 

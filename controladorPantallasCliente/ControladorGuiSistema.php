@@ -21,6 +21,13 @@ class ControladorGuiSistema {
         AccesoGui::$guiSistema->esperarInicioSistema(2);
         $this->sistema->iniciarSistema();
     }
+
+    public function comprobarProyectores() {
+      $this->sistema->proyector_status();
+    }
+
+   
+    
     public function comprobarSistema($alert=0) {
 
         $message=$this->sistema->getEstadoSistema();
@@ -43,7 +50,7 @@ class ControladorGuiSistema {
         }catch (Exception $e) {
 
         }
-        AccesoGui::$guiSistema->bienvenidaSistema();
+        AccesoGui::$guiSistema->bienvenidaSistema(true);
     }
     public function  procesarComandos($cmd) {
         if(strcmp($cmd->getAccion(), "COMPROBAR")==0) {
@@ -52,14 +59,16 @@ class ControladorGuiSistema {
         }
         else if(strcmp($cmd->getAccion(), "INICIAR")==0) {
             $this->sistema->iniciarSistema();
-            $this->comprobarSistema();
+	    $this->comprobarProyectores();
+
+            //$this->comprobarSistema();
         }
         else  if(strcmp($cmd->getAccion(), "APAGAR")==0) {
             $this->sistema->salir();
         }
         else  if(strcmp($cmd->getAccion(), "ESTADO")==0) {
             $this->enviarPantallaActiva();
-            $this->comprobarSistema();
+            //$this->comprobarSistema();
 //         AccesoGui::$guiSistema->bienvenidaSistema();
 //      AccesoGui::$guiSistema->dibujarPantalla();
 
@@ -68,18 +77,30 @@ class ControladorGuiSistema {
         }
     }
     public function enviarPantallaActiva() {
+
+	//enviar pantalla principal.
+
         $pantallaActiva=new Properties();
         $pantallaActiva->load(file_get_contents("./pantallaActiva.properties"));
         $activ=$pantallaActiva->getProperty('Pantalla.activa');
-        echo "pantalla activa".$activ."\n";
+
         if($activ==1) {//guiSistema
 
             AccesoGui::$guiSistema->bienvenidaSistema();
             AccesoGui::$guiSistema->dibujarPantalla();
         }
-        if($activ==2) {//guiMenus
+	else if($activ==3) {//guiEscenarios
+
+            AccesoGui::$guiEscenarios->dibujarPantalla();
+        }else{
+	    AccesoGui::$guiMenus->dibujarPantalla();
+	    AccesoGui::$guiMenus->menuPrincipal();
+	}
+	
+        /*if($activ==2) {//guiMenus
 
             AccesoGui::$guiMenus->dibujarPantalla();
+	    AccesoGui::$guiMenus->menuPrincipal();
         }
         if($activ==3) {//guiEscenarios
 
@@ -176,9 +197,10 @@ class ControladorGuiSistema {
             AccesoGui::$guiDispositivos->dibujarPantalla();
             AccesoGui::$guiAlumno->dibujarPantalla();
 
-        }
+        }*/
         AccesoGui::$guiSistema->enviarMenu();
         AccesoGui::$guiEscenarios->dibujarEscenarioMenu();
+	
 
     }
 }

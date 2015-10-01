@@ -142,6 +142,13 @@ class Sistema {
         AccesoControladoresDispositivos::$ctrlProyectores->apagarPizarra();
 
     }
+
+    public function proyector_status() {
+      $status = new status_class();
+      $status->proyector_status();
+
+    }
+
     public function getEstadoSistema() {
         $status = new status_class();
         $status->checkStatus();
@@ -160,8 +167,6 @@ class Sistema {
             if(!in_array($disp, $dispositivos) && $properties->getProperty($disp.".status")==1 && ( empty($parent) || $parentStatus==0 ) )
                 $dispositivos[]=$disp;
         }
-
-      echo "\nOKERRAK ".print_r($dispositivos,1);
       
         if(count($dispositivos)==0) return '';
 

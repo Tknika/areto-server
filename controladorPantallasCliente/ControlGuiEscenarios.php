@@ -67,6 +67,8 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
         AccesoGui::$guiEscenarios->enviarEstadoVideoconferencia();
         AccesoGui::$guiEscenarios->escenarioEnviarClase();
         AccesoGui::$guiVideoconferencia->dibujarPantalla();
+	AccesoControladoresDispositivos::$ctrlProyectores->estadoCentral();
+	AccesoControladoresDispositivos::$ctrlProyectores->estadoPizarra();
         sleep(1);
     }// end of member function enviarClases
 
@@ -110,6 +112,8 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
         AccesoGui::$guiMenus->menuPrincipal(true);
         AccesoGui::$guiSistema->mostrarMenu();
         AccesoGui::$guiEscenarios->enviarEstadoVideoconferencia();
+	AccesoControladoresDispositivos::$ctrlProyectores->estadoCentral();
+	AccesoControladoresDispositivos::$ctrlProyectores->estadoPizarra();
 
 
     } // end of member function recivirClases
@@ -147,6 +151,8 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
         AccesoGui::$guiMenus->menuPrincipal(true);
         AccesoGui::$guiSistema->mostrarMenu();
         AccesoGui::$guiEscenarios->enviarEstadoVideoconferencia();
+	AccesoControladoresDispositivos::$ctrlProyectores->estadoCentral();
+	AccesoControladoresDispositivos::$ctrlProyectores->estadoPizarra();
     } // end of member function claseLocal
 
     /**
@@ -164,16 +170,19 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
         ConexionServidorCliente::$ctrlGuiPantallas->subirPantallaElectrica();
         AccesoControladoresDispositivos::$ctrlFoco->apagar();
         ConexionServidorCliente::$ctrlGuiPlasmas->encender();
-        ConexionServidorCliente::$ctrlGuiCamaraDocumentos->camaraDocumentosApagar();
+	//Comentado mientras se repara el visor de opacos.
+        //ConexionServidorCliente::$ctrlGuiCamaraDocumentos->camaraDocumentosApagar();
         ConexionServidorCliente::$ctrlGuiProyectores->apagarPizarra();
         ConexionServidorCliente::$ctrlGuiProyectores->apagarCentral();
         AccesoControladoresDispositivos::$ctrlMesaMezclas->preset90();
-AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1");
+	AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1");
         ConexionServidorCliente::$ctrlGuiPantallas->pipEnPantallaPresi();
         AccesoGui::$guiEscenarios->escenarioSeminario();
         AccesoGui::$guiMenus->menuPrincipal(true);
         AccesoGui::$guiSistema->mostrarMenu();
         AccesoGui::$guiEscenarios->enviarEstadoVideoconferencia();
+	AccesoControladoresDispositivos::$ctrlProyectores->estadoCentral();
+	AccesoControladoresDispositivos::$ctrlProyectores->estadoPizarra();
     } // end of member function seminarioClase
 
     /**
@@ -201,7 +210,7 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
         ConexionServidorCliente::$ctrlGuiPlasmas->apagar();
         ConexionServidorCliente::$ctrlGuiProyectores->apagarPizarra();
         AccesoControladoresDispositivos::$ctrlMesaMezclas->preset90();
-AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1");
+	AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1");
         ConexionServidorCliente::$ctrlGuiPantallas->presidenciaDVD();
         usleep(100000);
         AccesoControladoresDispositivos::$ctrlPantallas->verEntradaPresidenciaAV1();
@@ -211,7 +220,8 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
         usleep(5000000);
         ConexionServidorCliente::$ctrlGuiProyectores->verDVDEnCentral();
         ConexionServidorCliente::$ctrlGuiDvd->onOffDVD();
-        ConexionServidorCliente::$ctrlGuiCamaraDocumentos->camaraDocumentosApagar();//apagarDoc
+        //Comentado mientras se repara la visor de opacos
+	//ConexionServidorCliente::$ctrlGuiCamaraDocumentos->camaraDocumentosApagar();//apagarDoc
         usleep(100000);
         AccesoGui::$guiSistema->esperarInicioSistema();
         AccesoGui::$guiEscenarios->escenarioPelicula();
@@ -221,6 +231,8 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
         usleep(3000000);
         ConexionServidorCliente::$ctrlGuiDvd->playDVD();
         AccesoGui::$guiDispositivos->seleccionarDvd();
+	AccesoControladoresDispositivos::$ctrlProyectores->estadoCentral();
+	AccesoControladoresDispositivos::$ctrlProyectores->estadoPizarra();
 
     } // end of member function pelicula
 

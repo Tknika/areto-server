@@ -147,7 +147,10 @@ class LuzTecho extends DispositivoIP {
 
         $this->tipoDispositivo="Luces";
         parent::__construct($dispositivo);
+
+echo "\ndddddddddddddddddddddddddddddd1111111111111111111\n";
         echo($this->ip."-".$this->modeloIPLT."-".$this->strMarca."-".$this->strModelo."-".$this->id_disp."-".$this->tipoPuerto."-".$this->numeroPuerto."-".$this->baudRate."-".$this->timeOut."-".$this->puerto."-".$this->password);
+echo "\ndddddddddddddddddddddddddddddd1111111111111111111\n";
         $this->cargarEstado();
 
     }
@@ -437,7 +440,6 @@ class LuzTecho extends DispositivoIP {
      * Carga en los atributos los valores que se encuentran en el archivo estadoDispositivos.properties
      */
     public function cargarEstado() {
-
         $this->estadoDispositivo=new Properties();
         $this->estadoDispositivo->load(file_get_contents("./estadoDispositivos.properties"));
         $this->levelGrupos["alumnos"]=$this->estadoDispositivo->getProperty('Luces.alumnos');

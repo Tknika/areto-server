@@ -1,5 +1,6 @@
 <?php
 
+require_once('./dispositivos/LCD.php');
 /**
  * class GUI_Pantallas
  *
@@ -16,11 +17,24 @@ class GUI_Pantallas {
     public static $PANTALLA_PRESIDENCIA = "PANTALLA_PRESIDENCIA";
     public static $PANTALLA_ENTRADA = "PANTALLA_ENTRADA";
 
+
+    private static $presidencia;
+
+    private static $entrada;
+
+
     //Variables de estado
     private $estado_pantalla_electrica = 0;
     private $pantalla_activa = "";
     private $comando = array("", "", "");
     private $estado=array("","","");
+
+
+    public function  __construct() {
+	self::$presidencia=new LCD("PantallaPresidencia");
+        self::$entrada=new LCD("PantallaEntrada");
+    }
+
     /**
      *
      *
@@ -108,14 +122,23 @@ class GUI_Pantallas {
      * @access public
      */
     public function getComandoEstado( $pantalla ) {
-        $this->setPantallaActiva($pantalla);
+
+	$this->setPantallaActiva($pantalla);
         if(strcmp($this->getPantallaActiva(),self::$PANTALLA_ELECTRICA)==0)
             return $this->getEstadoPantallaElectrica();
-        else {
 
-            return $this->estado[$this->obtenerIdPantalla($this->getPantallaActiva())];
+	if($pantalla=='PANTALLA_PRESIDENCIA'){
+	  $st=self::$presidencia->getEstado(LCD::$estadoLCD[LCD::$ENCENDIDO]);
+	}else if($pantalla=='PANTALLA_ENTRADA'){
+	  $st=self::$entrada->getEstado(LCD::$estadoLCD[LCD::$ENCENDIDO]);
+	}
 
-        }
+	if (!isset($st['estado']) || strpos($st['estado'],'OK01') === false ){
+	  return 'OFF';
+	}else{
+	  return 'ON';
+	}
+
     } // end of member function getComando
     /**
      *

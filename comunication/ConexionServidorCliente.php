@@ -43,6 +43,7 @@ class ConexionServidorCliente {
 
 
     public function __construct() {
+
         self::$ctrlGuiEscenarios=new ControlGuiEscenarios();
         self::$ctrlGuiVideoconferencia=new ControlGuiVideoconferencia();
         self::$ctrlGuiCamaras=new ControladorGuiCamaras();
@@ -56,11 +57,11 @@ class ConexionServidorCliente {
         self::$ctrlGuiSonido=new ControladorGuiSonido();
         self::$ctrlGuiAlumno=new ControladorGuiAlumno();
         self::$ctrlGuiSistema=new ControladorGuiSistema();
-
         self::$ctrlGuiDispositivo=new ControladorGuiDispositivos();
         self::$ctrlGuiMenu=new ControladorGuiMenu();
         self::$ctrlGuiCamaraDocumentos=new ControladorGuiCamaraDocumentos();
         //self::$ctrlGuiSistema->comprobarSistema();
+
     }
 
     public static function procesarComandoPantalla($comando) {

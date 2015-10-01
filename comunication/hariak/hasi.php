@@ -29,12 +29,22 @@ define('ROOT','/var/www/Tknika2/');
 
 $a = new status_class();
 $a->checkStatus();
+echo "\n..........CHECK:BUKATUDA...............\n";
 $a->initCmd();
 
+echo "\n..........INIT:BUKATUDA...............\n";
 
 new ConexionServidorCliente();
+
+echo "\n..........1111111...............\n";
+
 new AccesoControladoresDispositivos();
+
+echo "\n..........2222222...............\n";
+
 new AccesoGui();
+
+echo "\n..........333333333...............\n";
 
 
 $executeThread['socket'] = &new Socket_thread_class ('socket');

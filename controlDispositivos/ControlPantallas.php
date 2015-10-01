@@ -283,24 +283,22 @@ class ControlPantallas {
 
     public function pipEnPresidencia() {
 
+	$this->verEntradaPresidenciaVGA();
+        AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(1,1);
+	AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarAudio(1,1);
+        AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_CAMARA_3,MatrizVideo::$OUTPUT_LCD_PRESIDENCIA);
+	$this->ponerPIPPresidencia();
+        $this->fuentePIPPresidencia();
 
-        $this->verEntradaPresidenciaVGA();
+
+
+        /*$this->verEntradaPresidenciaVGA();
         AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(1,1);
         AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarAudio(1,1);
         AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_ESCALADOR,MatrizVideo::$OUTPUT_LCD_PRESIDENCIA);
 
-
-        /* try {
-            usleep(2000000);
-        } catch (Exception $e) {
-        }*/
         $this->ponerPIPPresidencia();
-
-        /*try {
-            usleep(2000000);
-        } catch (Exception $e) {
-        }*/
-        $this->fuentePIPPresidencia();
+        $this->fuentePIPPresidencia();*/
 
     }
 
@@ -430,7 +428,7 @@ class ControlPantallas {
 
         $error=self::$entrada->verEnPantallaVGA();
         if(!empty ($error)) {
-            if(strpos($error["estado"], "OK")===false) {
+            if(!isset($error["estado"]) || strpos($error["estado"], "OK")===false) {
                 echo "Error al intentar seleccionar la entrada av2 de la pantalla del pasillo\n";
             }
         }

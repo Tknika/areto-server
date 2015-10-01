@@ -34,7 +34,8 @@ class Automata extends DispositivoSerie {
     //pantalla tactil presidencia (valores: 1 o 0)
     private $activarPrestactil=array("presTact"=>1);
     //leds de los microfonos (valores: 1 o 0)
-    private $ledMic=array("M12"=>0,"M6"=>0,"M5"=>0,"M4"=>0,"M3"=>0,"M2"=>0,"M1"=>0);
+    //private $ledMic=array("M12"=>0,"M6"=>0,"M5"=>0,"M4"=>0,"M3"=>0,"M2"=>0,"M1"=>0);
+    private $ledMic=array("M6"=>0,"M5"=>0,"M4"=>0,"M3"=>0,"M2"=>0,"M1"=>0);
     //parametro para definir la intensidad de las luces del suelo (valores; 0000,03D0,07D0)
     private $intensidadSuelo=array("p1"=>"03D0","p2"=>"03D0","alum1"=>"03D0","alum2"=>"03D0","alum3"=>"03D0","alum4"=>"03D0","alum5"=>"03D0");
     //led de la pizarra (valores: 1 o 0)
@@ -89,9 +90,10 @@ class Automata extends DispositivoSerie {
      * @link Properties::guardarEstado()
      */
     public function setLedMicrofono($mic,$valor) {
-
-        $this->ledMic[$mic]=$valor;
-        $this->guardarEstado();
+	if (isset( $this->ledMic[$mic]) ){
+	  $this->ledMic[$mic]=$valor;
+	  $this->guardarEstado();
+	}
 
     }
 
@@ -105,8 +107,11 @@ class Automata extends DispositivoSerie {
      * @link Properties::guardarEstado()
      */
     public function getLedMicrofono($micro) {
-
-        return $this->ledMic[$micro];
+	if (isset( $this->ledMic[$mic]) ){
+	  return $this->ledMic[$micro];
+	}else{
+	  return 0;
+	}
 
     }
 
@@ -1054,6 +1059,9 @@ class Automata extends DispositivoSerie {
         $this->estadoDispositivo->setProperty("Automata.ledM1",$this->ledMic["M1"]);
         $this->estadoDispositivo->setProperty("Automata.ledM2",$this->ledMic["M2"]);
         $this->estadoDispositivo->setProperty("Automata.ledM3",$this->ledMic["M3"]);
+
+	echo "\n\nGUARDAR ESTADP LED_MICRO3333: Automata.ledM3,".$this->ledMic["M3"]."  333: {$this->ledMic["M3"]} \n\n";
+
         $this->estadoDispositivo->setProperty("Automata.ledM4",$this->ledMic["M4"]);
         $this->estadoDispositivo->setProperty("Automata.bpan",$this->pantalla["bpan"]);
         $this->estadoDispositivo->setProperty("Automata.span",$this->pantalla["span"]);

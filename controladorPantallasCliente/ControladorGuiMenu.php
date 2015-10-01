@@ -8,6 +8,8 @@
 require_once './AccesoGui.php';
 require_once './utils/ComandoFlash.php';
 
+require_once './AccesoControladoresDispositivos.php';
+
 /**
  * Description of ControladorGuiMenu
  *
@@ -65,6 +67,9 @@ class ControladorGuiMenu {
     public function menuPrincipal() {
 	AccesoGui::$guiMenus->menuPrincipal();
 	AccesoGui::$guiMenus->dibujarPantalla();
+	AccesoControladoresDispositivos::$ctrlProyectores->estadoPizarra();
+	AccesoControladoresDispositivos::$ctrlProyectores->estadoCentral();
+	AccesoControladoresDispositivos::$ctrlGuiPlasma->estado();
     }
 
 /**

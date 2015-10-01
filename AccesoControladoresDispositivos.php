@@ -178,9 +178,9 @@ class AccesoControladoresDispositivos {
        self::$ctrlLuz=new ControladorLuces();
        self::$ctrlFoco=new ControladorFocos();
        self::$ctrlGuiPantalla=new ControladorGuiPantallas();
-        self::$ctrlGuiProyectores=new ControladorGuiProyectores();
-        self::$ctrlGuiPlasma=new ControladorGuiPlasmas();
-        self::$ctrlVideoconferencia=new ControlVideoconferencia();
+       self::$ctrlGuiProyectores=new ControladorGuiProyectores();
+       self::$ctrlGuiPlasma=new ControladorGuiPlasmas();
+       self::$ctrlVideoconferencia=new ControlVideoconferencia();
   
        self::$ctrlLuzTecho=new ControladorLucesTecho();
        self::$ctrlGeneradorMultiventanas=new controladorGeneradorMultiventanas();

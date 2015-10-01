@@ -1,5 +1,6 @@
 <?php
 require_once './comunication/hariak/socketClass/SocketClass.php';
+require_once('./dispositivos/Plasma.php');
 /**
  * class GUI_Plasma
  * 
@@ -14,10 +15,12 @@ class GUI_Plasma
    /*** Attributes: ***/
 
  private$comando = "";
-  private $encendido = false;
+ private $encendido = false;
  public function  __construct() {
+    $this->plasma_dev=new Plasma("Plasma");
 
  }
+
   /**
    * 
    *
@@ -63,10 +66,15 @@ class GUI_Plasma
    * @access public
    */
   public function getEstado( ) {
-      if ($this->encendido)
-		  return "ON";
-	  else
-		  return "OFF";
+
+      $st=$this->plasma_dev->estadoPlasma();
+
+
+      return $st;
+      /*if ($this->encendido)
+	return "ON";
+      else
+	return "OFF";*/
   } // end of member function getEstado
 
   /**
@@ -178,8 +186,8 @@ public function verAtrilEnPlasma(){
    * @access public
    */
   public function enviarEstado( ) {
-       $cmd = new ComandoFlash("PLASMA", $this->getEstado(), "");
-	   $this->enviarPeticion($cmd->getComando());
+      $cmd = new ComandoFlash("PLASMA", $this->getEstado(), "");
+      $this->enviarPeticion($cmd->getComando());
   } // end of member function enviarEstado
 
   /**

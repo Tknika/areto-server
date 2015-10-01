@@ -62,12 +62,9 @@ class GUI_Proyectores {
      * @access public
      */
     public function setComando( $proyector,  $comando ) {
-
-	system_class::log_message("#### 888 #### setComando  $proyector //  $comando ");
         $this->setProyectorActivo($proyector);
         $this->comando[$this->obtenerIdProyector($proyector)]=$comando;
         $this->enviarComando();
-    //$this->activarPantalla();
 
     } // end of member function setComando
 
@@ -80,7 +77,6 @@ class GUI_Proyectores {
      * @access public
      */
     public function getComando( $proyector ) {
-	system_class::log_message("#### 899 #### getComando  $proyector //  $comando ");
         return $this->comando[$this->obtenerIdProyector($proyector)];
     } // end of member function getComando
 
@@ -123,7 +119,13 @@ class GUI_Proyectores {
      */
     public function setProyectorMuteado( $muteado ) {
         $this->proyector_muteatu=$muteado;
-        $this->enviarComandoMute();
+        
+	if($muteado){
+	  $this->proyector_pizarra->mutear();
+	}else{
+	  $this->proyector_pizarra->desmutear();
+	}
+	$this->enviarComandoMute();
     //$this->activarPantalla();
     } // end of member function setProyectorMuteado
 
@@ -137,7 +139,14 @@ class GUI_Proyectores {
      */
     public function setPizarraMuteado( $muteado ) {
         $this->pizarra_muteatu=$muteado;
-        $this->enviarComandoMute();
+        
+	if($muteado){
+	  $this->proyector_pizarra->mutear();
+	}else{
+	  $this->proyector_pizarra->desmutear();
+	}
+	$this->enviarComandoMute();
+
     //$this->activarPantalla();
     } // end of member function setPizarraMuteado
 
@@ -148,7 +157,7 @@ class GUI_Proyectores {
      * @access public
      */
     public function isMuteadoProyector( ) {
-        return $this->proyector_muteatu;
+        return $this->proyector_central->is_mute();
     } // end of member function isMuteadoProyector
 
     /**
@@ -158,11 +167,11 @@ class GUI_Proyectores {
      * @access public
      */
     public function isMuteadoPizarra( ) {
-        return $this->pizarra_muteatu;
+        return $this->proyector_pizarra->is_mute();
     } // end of member function isMuteadoPizarra
 
     public function getEstadoMuteadoProyector() {
-        if ($this->proyector_muteatu==1) {
+        if ($this->proyector_central->is_mute()) {
             return "MUTE";
         } else {
             return "NO_MUTE";
@@ -176,7 +185,8 @@ class GUI_Proyectores {
      * @access public
      */
     public function getEstadoMuteadoPizarra( ) {
-        if ($this->pizarra_muteatu==1) {
+
+        if ($this->proyector_pizarra->is_mute()) {
             return "MUTE";
         } else {
             return "NO_MUTE";
@@ -192,6 +202,7 @@ class GUI_Proyectores {
      * @access public
      */
     public function getEstadoMuteado( $proyector ) {
+
         if (strcmp($proyector, self::$PROYECTOR_CENTRAL)==0) {
             return $this->getEstadoMuteadoProyector();
         } else {
@@ -250,10 +261,7 @@ class GUI_Proyectores {
      * @access public
      */
     public function getEstadoProyector( ) {
-	//AITOR::Proyectorearen egoera kontsulta egin!!!!!!!!!!
-	
 	$e=$this->proyector_central->estado();
-	system_class::log_message("================= $e ================");
 	return $e;
 
     } // end of member function getEstadoProyector
@@ -265,9 +273,7 @@ class GUI_Proyectores {
      * @access public
      */
     public function getEstadoPizarra( ) {
-	//AITOR::Proyectorearen egoera kontsulta egin!!!!!!!!!!
 	$e=$this->proyector_pizarra->estado();
-
 	return $e;
 
 
@@ -550,15 +556,9 @@ class GUI_Proyectores {
      * @access public
      */
     public function enviarComando( ) {
-	system_class::log_message("#### 1111 enviarComando GUI_Proyectores ####");
 	$a=$this->getProyectorActivo();
 	$c=$this->getComando($this->getProyectorActivo());
-	system_class::log_message("#### 22222  $a /////   $c  ####");
         $cmd = new ComandoFlash($a, $c , "");
-	system_class::log_message("#### 33333333 ".$cmd->getComando()." ####");
-
-	//piztutzeko comandoa bidaltzen du, baino egoera errepikatzen du!!!!!!!
-	//Itzali ondo egiten du, baino piztu EZ du egiten hurrengo leroa komentatuta
         $this->enviarPeticion($cmd->getComando());
 
     } // end of member function enviarComando
@@ -581,7 +581,7 @@ class GUI_Proyectores {
      * @access public
      */
     public function enviarComandoEstado( ) {
-        $cmd = new ComandoFlash($this->getProyectorActivo(), $this->getEstado($this->getProyectorActivo()), "");
+	$cmd = new ComandoFlash($this->getProyectorActivo(), $this->getEstado($this->getProyectorActivo()), "");
         $this->enviarPeticion($cmd->getComando());
     } // end of member function enviarComandoEstado
 
@@ -594,6 +594,7 @@ class GUI_Proyectores {
      * @access public
      */
     public function enviarPeticion( $comando ) {
+	
         SocketClass::client_reply($comando);
 
     } // end of member function enviarPeticion
@@ -624,10 +625,8 @@ class GUI_Proyectores {
 
 	$this->activarPantalla();
 	$this->setProyectorActivo($proyector);
-	//$this->enviarComandoMute();
+	$this->enviarComandoMute();
 	$this->enviarComandoEstado();
-	//$this->enviarComando();
-	system_class::log_message("??? 66 ???");
 
     } // end of member function dibujarPantalla
 

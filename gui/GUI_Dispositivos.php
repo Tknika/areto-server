@@ -167,18 +167,10 @@ $this->setDispositivo("CAMARA_".$camaraId);
    * @access public
    */
   public function seleccionarPantallaElectrica( ) {
-      system_class::log_message("@@11@@@ GUIDispositovos_selecionaarpantallaelectrica........");
       $this->setDispositivo("PANTALLA_ELECTRICA");
-      system_class::log_message("@@22@@@ GUIDispositovos_selecionaarpantallaelectrica........");
-
       AccesoGui::$guiProyectores->setProyectorActivo("PROYECTOR_CENTRAL");
-      system_class::log_message("@@33@@@ GUIDispositovos_selecionaarpantallaelectrica........");
-
       AccesoGui::$guiProyectores->dibujarPantalla("PROYECTOR_CENTRAL");
-      system_class::log_message("@@44@@@ GUIDispositovos_selecionaarpantallaelectrica........");
-
       AccesoGui::$guiPantallas->dibujarPantalla("PANTALLA_ELECTRICA");
-      system_class::log_message("@@55@@@ GUIDispositovos_selecionaarpantallaelectrica........");
   } // end of member function seleccionarPantallaElectrica
 
   /**
@@ -251,8 +243,8 @@ $this->setDispositivo("CAMARA_".$camaraId);
    */
   public function enviarDispositivo( ) {
 
-       $cmd = new ComandoFlash("DISPOSITIVO", $this->getDispositivo(), "");
-   $this->enviarPeticion($cmd->getComando());
+    $cmd = new ComandoFlash("DISPOSITIVO", $this->getDispositivo(), "");
+    $this->enviarPeticion($cmd->getComando());
      
 
   } // end of member function enviarDispositivo
@@ -278,14 +270,8 @@ $this->setDispositivo("CAMARA_".$camaraId);
    * @access public
    */
   public function dibujarPantalla( ) {
-$this->activarPantalla();
+       $this->activarPantalla();
        $this->enviarDispositivo();
-	try {
-		usleep(500000); // segundu bat itxaroten da Thinclient-ei ez
-							// bait die pantaila marrazteko denborarik
-							// ematen.
-	} catch (Exception $e) {
-	}
 
   } // end of member function dibujarPantalla
 

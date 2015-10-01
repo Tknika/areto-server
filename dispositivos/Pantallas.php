@@ -111,8 +111,16 @@ abstract class Pantallas extends DispositivoIP {
     public function apagar( ) {
         $this->encenderApagar=true;
         $comando=$this->comandos1[DaoControl::$APAGAR];
+
+
+echo "\nPANTALLAS APAGAR:::.11....$comando..".$this->disp."... \n";
+
+
         $comando=$this->procesarComando($comando,$this->parametroComando);
         $respuesta=$this->enviarComando($comando);
+
+echo "\nPANTALLAS APAGAR:::.22....$respuesta..... \n";
+
         $this->setEstado(self::$OFF);
         $this->encendido=false;
         $this->guardarEstado();

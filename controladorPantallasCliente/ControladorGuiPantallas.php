@@ -92,6 +92,12 @@ class ControladorGuiPantallas {
      */
     public function presidenciaContraparte() {
 
+	echo "\n presidenciaContraparte_____1_";
+	AccesoControladoresDispositivos::$ctrlPantallas->pipEnPresidencia();
+
+
+	/*
+
         if (AccesoControladoresDispositivos::$ctrlPantallas->isPIPPresidencia()) {
             AccesoControladoresDispositivos::$ctrlPantallas->quitarPIPPresidencia();
             try {
@@ -104,6 +110,8 @@ class ControladorGuiPantallas {
             MatrizVideo::$OUTPUT_LCD_PRESIDENCIA);
      
         AccesoGui::$guiPantallas->pantallaPresidenciaContra();
+	*/
+	
 
     }
 
@@ -371,8 +379,8 @@ class ControladorGuiPantallas {
             AccesoControladoresDispositivos::$ctrlPantallas->verEntradaPresidenciaAV1();
         }
 
-        AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_VIDEOCONFERENCIA,
-            MatrizVideo::$OUTPUT_LCD_PRESIDENCIA);
+	AccesoControladoresDispositivos::$ctrlPantallas->pipEnPresidencia();
+        //AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_VIDEOCONFERENCIA, MatrizVideo::$OUTPUT_LCD_PRESIDENCIA);
     }
 
     /**
@@ -668,49 +676,36 @@ class ControladorGuiPantallas {
      * @param ComandoFlash $cmd
      */
     public function getComandoFlashPresidencia($cmd) {
+
         if (strcmp($cmd->getAccion(),"MOSTRAR_CONTRAPARTE_Y_NUESTRA_IMAGEN")==0) {
             $this->presidenciaMezcla();
+        }else if (strcmp($cmd->getAccion(),"MOSTRAR_NUESTRA_IMAGEN")==0) {
+            $this->presidenciaNuestra();
+        }else if (strcmp($cmd->getAccion(),"MOSTRAR_CONTRAPARTE")==0) {
+            $this->presidenciaContraparte();
+        }else if (strcmp($cmd->getAccion(),"PCSUELO")==0) {
+            $this->presidenciaPCSuelo();
+        }else if (strcmp($cmd->getAccion(),"DVD")==0) {
+            $this->presidenciaDVD();
+        }else if (strcmp($cmd->getAccion(),"DVDGRAB")==0) {
+            $this->presidenciaDVDGrab();
+        }else if (strcmp($cmd->getAccion(),"CAMARA_DE_DOCUMENTOS")==0) {
+            $this->presidenciaVisorDocumentos();
+        }else if (strcmp($cmd->getAccion(),"PORTATIL1")==0) {
+            $this->presidenciaPortatil1();
+        }else if (strcmp($cmd->getAccion(),"PORTATIL2")==0) {
+            $this->presidenciaPortatil2();
+        }else if (strcmp($cmd->getAccion(),"PORTATIL3")==0) {
+            $this->presidenciaPortatil3();
+        }else if (strcmp($cmd->getAccion(),"ATRIL")==0) {
+            $this->presidenciaAtril();
+        }else if (strcmp($cmd->getAccion(),"THINK_CLIENT")==0) {
+            $this->presidenciaRedThinkClient();
+        }else if (strcmp($cmd->getAccion(),"ENCENDER")==0) {
+            $this->presidenciaEncender();
+        }else if (strcmp($cmd->getAccion(),"APAGAR")==0) {
+            $this->presidenciaApagar();
         }
-        else if (strcmp($cmd->getAccion(),"MOSTRAR_NUESTRA_IMAGEN")==0) {
-                $this->presidenciaNuestra();
-            }
-            else if (strcmp($cmd->getAccion(),"MOSTRAR_CONTRAPARTE")==0) {
-                    $this->presidenciaContraparte();
-                }
-                else if (strcmp($cmd->getAccion(),"PCSUELO")==0) {
-                        $this->presidenciaPCSuelo();
-                    }
-                    else if (strcmp($cmd->getAccion(),"DVD")==0) {
-                            $this->presidenciaDVD();
-                        }
-                        else if (strcmp($cmd->getAccion(),"DVDGRAB")==0) {
-                                $this->presidenciaDVDGrab();
-                            }
-                            else if (strcmp($cmd->getAccion(),"CAMARA_DE_DOCUMENTOS")==0) {
-                                    $this->presidenciaVisorDocumentos();
-                                }
-                                else if (strcmp($cmd->getAccion(),"PORTATIL1")==0) {
-                                        $this->presidenciaPortatil1();
-                                    }
-                                    else if (strcmp($cmd->getAccion(),"PORTATIL2")==0) {
-                                            $this->presidenciaPortatil2();
-                                        }
-                                        else if (strcmp($cmd->getAccion(),"PORTATIL3")==0) {
-                                                $this->presidenciaPortatil3();
-                                            }
-                                            else if (strcmp($cmd->getAccion(),"ATRIL")==0) {
-                                                    $this->presidenciaAtril();
-                                                }
-                                                else if (strcmp($cmd->getAccion(),"THINK_CLIENT")==0) {
-                                                        $this->presidenciaRedThinkClient();
-                                                    }
-                                                    else if (strcmp($cmd->getAccion(),"ENCENDER")==0) {
-
-                                                            $this->presidenciaEncender();
-                                                        }
-                                                        else if (strcmp($cmd->getAccion(),"APAGAR")==0) {
-                                                                $this->presidenciaApagar();
-                                                            }
 
     }
 

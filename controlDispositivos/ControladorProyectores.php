@@ -61,14 +61,19 @@ class ControladorProyectores {
     public function activarCentral( ) {
 
         $respuesta=self::$central->desmutear();
-        if(!empty ($respuesta)) {
+	$cmd2 = new ComandoFlash("PROYECTOR_CENTRAL", "NO_MUTE");
+	$bb=$cmd2->getComando();
+	SocketClass::client_reply($bb);
+
+	  
+        /*if(!empty ($respuesta)) {
             if(strcmp($respuesta,"?")==0) {
                 echo "ERROR al enviar el comando ".$comando." al proyector central, para activarlo\n";
                 return 1;
             }
             else return 0;
 
-        }else return 1;
+        }else return 1;*/
     } // end of member function activarProyector
 
     /**
@@ -79,14 +84,18 @@ class ControladorProyectores {
     public function desactivarCentral( ) {
 
         $respuesta=self::$central->mutear();
-        if(!empty ($respuesta)) {
+	$cmd2 = new ComandoFlash("PROYECTOR_CENTRAL", "MUTE");
+	$bb=$cmd2->getComando();
+	SocketClass::client_reply($bb);
+
+        /*if(!empty ($respuesta)) {
             if(strcmp($respuesta,"?")==0) {
                 echo "ERROR al enviar el comando ".$comando." al proyector central, para desactivarlol\n";
                 return 1;
             }
             else return 0;
 
-        }else return 1;
+        }else return 1;*/
     } // end of member function desactivarProyector
 
     /**
@@ -162,16 +171,6 @@ class ControladorProyectores {
 	$aa=$cmd->getComando();
 	SocketClass::client_reply($aa);
 
-	if(strstr($respuesta,'ON')){
-	  if(self::$central->is_mute() ){
-	    $cmd2 = new ComandoFlash("PROYECTOR_CENTRAL", "MUTE");
-	    
-	  }else{
-	    $cmd2 = new ComandoFlash("PROYECTOR_CENTRAL", "NO_MUTE");
-	  }
-	  $bb=$cmd2->getComando();
-	  SocketClass::client_reply($bb);
-	}
     } // end of member function estadoCentral
 
 
@@ -298,22 +297,12 @@ class ControladorProyectores {
      * @access public
      */
     public function estadoPizarra( ) {
-	$respuesta=self::$pizarra->estado();
 
+
+	$respuesta=self::$pizarra->estado();
 	$cmd = new ComandoFlash("PIZARRA_DIGITAL", "$respuesta");
 	$aa=$cmd->getComando();
 	SocketClass::client_reply($aa);
-
-	if(strstr($respuesta,'ON')){
-	  if(self::$pizarra->is_mute() ){
-	    $cmd2 = new ComandoFlash("PIZARRA_DIGITAL", "MUTE");
-	    
-	  }else{
-	    $cmd2 = new ComandoFlash("PIZARRA_DIGITAL", "NO_MUTE");
-	  }
-	  $bb=$cmd2->getComando();
-	  SocketClass::client_reply($bb);
-	}
 
     } // end of member function estadoPizarra
 
@@ -327,7 +316,11 @@ class ControladorProyectores {
     public function desactivarPizarra( ) {
 
         $respuesta=self::$pizarra->mutear();
-        if(!empty ($respuesta)) {
+	$cmd2 = new ComandoFlash("PIZARRA_DIGITAL", "MUTE");
+	$bb=$cmd2->getComando();
+	SocketClass::client_reply($bb);
+
+        /*if(!empty ($respuesta)) {
             if(strcmp($respuesta,"?")==0) {
                 echo "ERROR al enviar el comando ".$comando." al proyector de la pizarra, para desactivarla\n";
                 return 1;
@@ -335,7 +328,9 @@ class ControladorProyectores {
             else return 0;
         }else {
             return 1;
-        }
+        }*/
+	
+
     } // end of member function desactivarPizarra
 
     /**
@@ -346,13 +341,20 @@ class ControladorProyectores {
     public function activarPizarra( ) {
 
         $respuesta=self::$pizarra->desmutear();
-        if(!empty ($respuesta)) {
+	$cmd2 = new ComandoFlash("PIZARRA_DIGITAL", "NO_MUTE");
+	$bb=$cmd2->getComando();
+	SocketClass::client_reply($bb);
+
+        /*if(!empty ($respuesta)) {
             if(strcmp($respuesta,"?")==0) {
                 echo "ERROR al enviar el comando ".$comando." al proyector de la pizarra, para activarla\n";
                 return 1;
             }
             else return 0;
-        }else return 1;
+        }else return 1;*/
+
+	
+
     } // end of member function activarPizarra
 
     /**

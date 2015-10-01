@@ -14,6 +14,8 @@
  */
 
 require_once 'Net/Socket.php';
+require_once('./dispositivos/Proyector.php');
+
 define('_PROPERTIES_FILE', './sinta.properties');
 define('_STATUS_FILE', './status/device.status');
 define('_XML_FILE', './status/sinta2.xml');
@@ -24,6 +26,15 @@ class status_class {
 
     function __construct() {
         $this->loadProperties();
+    }
+
+    function proyector_status(){
+      $proyector_central=new Proyector('ProyectorCentral');
+      $proyector_pizarra=new Proyector('ProyectorPizarra');
+
+      $e=$proyector_pizarra->estado();
+      $b=$proyector_central->estado();
+
     }
 
     function xmlZerrenda() {
@@ -281,6 +292,7 @@ class status_class {
 
         echo "\nTest devices";
         foreach ($this->properties as $device => $attrib) {
+	    echo "\nTEST DEVICE::: $device";
             if (array_key_exists('test', $attrib)) {
                 if (!isset($attrib['test']) || empty($attrib['test']))
                     continue;
@@ -322,6 +334,7 @@ class status_class {
                 }
             }
         }
+	echo "\n............................TEST BUKATU DA...............................\n";
     }
 
     /*

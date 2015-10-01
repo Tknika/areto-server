@@ -465,7 +465,6 @@ class ControladorAutomata {
      * @param <type> $valor
      */
     public function setLedMicrofono($micro,$valor) {
-
         self::$automata->setLedMicrofono($micro,$valor);
 
     }

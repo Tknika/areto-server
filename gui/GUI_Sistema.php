@@ -53,7 +53,6 @@ class GUI_Sistema {
     public function setComando( $comando) {
         $this->comando=$comando;
         $this->enviarComando($comando);
-        $this->activarPantalla();
     } // end of member function setComando
 
 
@@ -79,10 +78,12 @@ class GUI_Sistema {
     public function bienvenidaSistema( $f=false ) {
         $this->ocultarMenu();
 	system_class::log_message("CMD bienvenidaSistema!!!!! ".var_dump($f,1));
+    
 	if($f)
 	  $this->setComando("BIENVENIDO:ON");
 	else
 	  $this->setComando("BIENVENIDO");
+
     } // end of member function bienvenidaSistema
 
     /**
@@ -196,8 +197,7 @@ class GUI_Sistema {
      */
     public function activarPantalla() {
 
-
-        $pantallaActual=new Properties();
+	$pantallaActual=new Properties();
         $pantallaActual->load(file_get_contents("./pantallaActiva.properties"));
         $pantallaActual->setProperty("Pantalla.activa",1);
         file_put_contents('./pantallaActiva.properties',     $pantallaActual->toString(true));

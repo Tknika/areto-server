@@ -252,8 +252,8 @@ class MesaMezclas extends DispositivoIP {
      */
     public function encender( $canal,$fader ) {
 
-        $fadernum=63+self::$fader[$fader];
-
+	$fadernum=63+self::$fader[$fader];
+	
 	system_class::log_message("ENCENDER MICRO:::: fader1:".$fader." fader2: ".self::$fader[$fader]." canal: ".$canal." fadernum ".$fadernum);
 
         $comando=$this->procesarComando("",  array("canal"=>$canal,"fader"=>$fadernum,"volumen"=>self::$VOLON));
@@ -273,11 +273,11 @@ class MesaMezclas extends DispositivoIP {
      * @param int $fader
      */
     public function apagar( $canal,$fader ) {
-        
-        $fadernum = 63 + self::$fader[$fader];
-        system_class::log_message("APAGAR MICRO:::: fader1:".$fader." fader2: ".$fader[$fader]." canal: ".$canal." fadernum ".$fadernum);
 
-        $comando=$this->procesarComando($comando,  array("canal"=>$canal,"fader"=>$fadernum,"volumen"=>self::$VOLOFF));
+	$fadernum = 63 + self::$fader[$fader];
+	system_class::log_message("APAGAR MICRO:::: fader1:".$fader." fader2: ".self::$fader[$fader]." canal: ".$canal." fadernum ".$fadernum);
+
+        $comando=$this->procesarComando("",  array("canal"=>$canal,"fader"=>$fadernum,"volumen"=>self::$VOLOFF));
         $this->guardarEstado();
         $this->enviarComando($comando);
 
