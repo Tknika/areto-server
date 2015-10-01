@@ -3,3 +3,4 @@ dao/DaoAccess.php
 !dao/DaoAccess.php.dist
 *.odt
 pantallaActiva.properties.bak
+nbproject
