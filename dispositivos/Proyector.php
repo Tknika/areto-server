@@ -269,15 +269,15 @@ class Proyector extends DispositivoIP {
 
 	$estados=array(0=>'Projector is ON.',
 	4=>'Lamps are off due to Power Management.',
-	8=>'Abnormal Temperature results if status 28 doesn’t work',
+	8=>'Abnormal Temperature results if status 28 does not work.',
 	10=>'Power failure.',
 	20=>'Projector just shut off and is in 90 second cool down mode.',
-	21=>'Because of lamp failure, the power is off (cooling down)',
-	24=>'Processing power save, cooling down',
+	21=>'Because of lamp failure, the power is off (cooling down).',
+	24=>'Processing power save, cooling down.',
 	28=>'Temperature warning and cooling down.',
-	40=>'Projector just powered up and is currently in 30 sec. countdown',
+	40=>'Projector just powered up and is currently in 30 sec. countdown.',
 	80=>'Projector is OFF (Standby).',
-	81=>'Stand By after cooling down because of lamp failure',
+	81=>'Stand By after cooling down because of lamp failure.',
 	88=>'Temperature warning occurred and system has recovered.'
 	);
 
@@ -306,7 +306,7 @@ class Proyector extends DispositivoIP {
 	  $result="DISABLED";
 	}
 	if(in_array($respuesta,array_keys($estados))){
-	  $st=$result.":".$estados[$respuesta];
+	  $st=$result.":".trim($estados[$respuesta]);
 	}else{
 	  $st=$result;
 	}
