@@ -108,7 +108,6 @@ class ControlMesaMezclas {
      * @param string $mic
       */
     public function desactivarMicPresidencia($mic) {
-        echo "micPreesidesactivando ".$mic."\n";
         self::$mesaMezclas->apagar(MesaMezclas::$CANAL1,$mic);
 
     }
@@ -120,7 +119,6 @@ class ControlMesaMezclas {
      * @param string $mic
       */
     public function subirMicPresidencia($mic) {
-
         self::$mesaMezclas->subirVolumen(MesaMezclas::$CANAL1,$mic);
 
     }

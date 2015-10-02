@@ -44,13 +44,7 @@ class Plasma extends Pantallas {
 
     }
         public function apagar(){
-
-	  echo "\n\nAPAGAR  PLASMA:::.11.........";
-	
 	  $respuesta=parent::apagar();
-
-	  echo "\nAPAGAR  PLASMA:::.22....$respuesta..... \n";
-
 	  return $respuesta;
 		
         }
@@ -72,9 +66,6 @@ class Plasma extends Pantallas {
         $comando=$this->comandos1[DaoControl::$ESTADO];
         $comando=$this->procesarComando($comando, $this->parametroComando);
         $respuesta=$this->enviarComando($comando);
-	echo "\nCOMANDO_ESTADO PLASMA::: $comando \n";
-	echo "\nRESPUESTA_ESTADO PLASMA::: $comando \n";
-
 	if(strcmp($respuesta,"ER401")==0)
 		return 1;
 	else return $respuesta;

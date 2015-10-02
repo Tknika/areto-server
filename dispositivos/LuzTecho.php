@@ -148,9 +148,7 @@ class LuzTecho extends DispositivoIP {
         $this->tipoDispositivo="Luces";
         parent::__construct($dispositivo);
 
-echo "\ndddddddddddddddddddddddddddddd1111111111111111111\n";
         echo($this->ip."-".$this->modeloIPLT."-".$this->strMarca."-".$this->strModelo."-".$this->id_disp."-".$this->tipoPuerto."-".$this->numeroPuerto."-".$this->baudRate."-".$this->timeOut."-".$this->puerto."-".$this->password);
-echo "\ndddddddddddddddddddddddddddddd1111111111111111111\n";
         $this->cargarEstado();
 
     }
@@ -351,8 +349,6 @@ echo "\ndddddddddddddddddddddddddddddd1111111111111111111\n";
         $this->cambiarLinea=false;
         $comando=$this->comandos1[$escenario];
         $valoresIntensidad=split("W", $comando);
-	echo "valores intensidad escenario\n";
-	print_r($valoresIntensidad);
 	$i=1;
         foreach ($this->levels as $grupoactual=>$intensidades)
             foreach ($this->levels[$grupoactual] as $num=>$intensidad) {

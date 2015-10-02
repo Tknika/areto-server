@@ -56,6 +56,8 @@ class system_class{
 	}
 		
 	static function log_message($msg, $level = LOG_NOTICE){
+		if(empty($msg)) return;
+
 		if(SYSLOG=='true'){
 			openlog("paraninfo ", LOG_PID | LOG_PERROR, LOG_LOCAL0);
 			syslog( LOG_NOTICE, "".date('Y-m-d h:i:s').': '.$msg);

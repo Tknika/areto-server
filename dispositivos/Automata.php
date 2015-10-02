@@ -1060,8 +1060,6 @@ class Automata extends DispositivoSerie {
         $this->estadoDispositivo->setProperty("Automata.ledM2",$this->ledMic["M2"]);
         $this->estadoDispositivo->setProperty("Automata.ledM3",$this->ledMic["M3"]);
 
-	echo "\n\nGUARDAR ESTADP LED_MICRO3333: Automata.ledM3,".$this->ledMic["M3"]."  333: {$this->ledMic["M3"]} \n\n";
-
         $this->estadoDispositivo->setProperty("Automata.ledM4",$this->ledMic["M4"]);
         $this->estadoDispositivo->setProperty("Automata.bpan",$this->pantalla["bpan"]);
         $this->estadoDispositivo->setProperty("Automata.span",$this->pantalla["span"]);

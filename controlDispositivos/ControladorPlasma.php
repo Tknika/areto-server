@@ -44,27 +44,9 @@ class ControladorPlasma {
     public function encender() {
         $respuesta=self::$plasma->estadoPlasma();
 	if ( $respuesta == 'OFF' ){
-	  echo "plasma->encender\n";
 	  $respuesta=self::$plasma->encender();
 	}
 
-	/*
-	$respuesta=self::$plasma->estadoPlasma();
-	if($respuesta==1){
-	  echo "error al preguntar por el estado del plasma\n";
-	  return 1;
-	}
-	else if(strpos($respuesta,"QPW:0")!==false){
-	  $respuesta=self::$plasma->encender();
-	  if($respuesta==1){
-	    echo "error al encender el plasma\n";
-	    return 1;
-	  }else
-	    return 0;		
-	  }//si ya esta encendido no hace falta encender
-	    else return 0;
-
-	  */
     } // end of member function encender
 
     /**
@@ -76,27 +58,8 @@ class ControladorPlasma {
 
 	$respuesta=self::$plasma->estadoPlasma();
 	if ( $respuesta == 'ON' ){
-	  echo "plasma->apagar\n";
 	  $respuesta=self::$plasma->apagar();
 	}
-
-	/*
-	$respuesta=self::$plasma->estadoPlasma();
-	if($respuesta==1){
-	  echo "error al preguntar por el estado del plasma\n";
-	  return 1;
-	}
-	else if(strpos($respuesta,"QPW:1")!==false){
-	$respuesta=self::$plasma->apagar();
-	if($respuesta==1){
-	  echo "error al encender el plasma\n";
-	  return 1;
-	}else
-	  return 0;		
-	}//si ya esta encendido no hace falta encender
-	else return 0;*/
-
-
 
     } // end of member function apagar
 

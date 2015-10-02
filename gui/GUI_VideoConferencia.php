@@ -137,7 +137,6 @@ public function getVolumen(){
      * @access public
      */
     public function setVolumen( $volumen ) {
-        echo "VOLULMEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEENNNNNNNNNNNNNNN".$volumen;
         $this->volumen=$volumen;
         $this->enviarVolumen();
         $this->activarPantalla();
@@ -665,8 +664,6 @@ print_r($cmd);
      * @access public
      */
     public function activarPantalla() {
-echo "pantalla activa=4\n";
-
             $pantallaActual=new Properties();
         $pantallaActual->load(file_get_contents("./pantallaActiva.properties"));
             $pantallaActual->setProperty("Pantalla.activa",4);
@@ -683,17 +680,11 @@ echo "pantalla activa=4\n";
      */
     public function dibujarPantalla( ) {
         $this->activarPantalla();
-echo "1";
          $this->enviarNumero();
-echo "2";
 	  $this->enviarVolumen();
-echo "3";
 	  $this->enviarComando();
-echo "4";
   $this->enviarNoInterrumpir();
-echo "5";
 	  $this->enviarNuestroSonido();
-echo "6";
 	  //this.pnlControl.getModuloControl().control_videoconferencia.llamadasactivas();
     } // end of member function dibujarPantalla
 

@@ -172,7 +172,7 @@ public function seleccionarCamara3(  ) {//kamara bakoitzeko bat
    */
   public function seleccionarPantallaPresidencia( ) {
       AccesoGui::$guiDispositivos->seleccionarPantallaPresidencia();
-       AccesoGui::$guiPantallas->dibujarPantalla("PANTALLA_PRESIDENCIA"); //asmatua aldatzeko
+      AccesoGui::$guiPantallas->dibujarPantalla("PANTALLA_PRESIDENCIA"); //asmatua aldatzeko
   } // end of member function seleccionarPantallaPresidencia
 
   /**

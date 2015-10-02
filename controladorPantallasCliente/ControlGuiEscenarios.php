@@ -28,7 +28,6 @@ class ControlGuiEscenarios {
     public function enviarClases( ) {
 
         AccesoGui::$guiSistema->esperarInicioSistema();
-
         AccesoControladoresDispositivos::$ctrlLuz->setLucesEscenarios(LuzTecho::$ESCENARIO_ENVIAR_CLASE);
         AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarAudio(1,1);
         
@@ -53,7 +52,7 @@ class ControlGuiEscenarios {
         //AccesoControladoresDispositivos::$ctrlGuiPantalla->presidenciaVideoconferencia();
         AccesoControladoresDispositivos::$ctrlFoco->encender();
         AccesoControladoresDispositivos::$ctrlMesaMezclas->preset90();
-AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1");
+	//AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1");
         AccesoControladoresDispositivos::$ctrlGuiPlasma->verVideoconferenciaEnPlasma();//begiratzeko
         AccesoControladoresDispositivos::$ctrlProyectores->activarCentral();
         AccesoControladoresDispositivos::$ctrlProyectores->activarPizarra();
@@ -64,8 +63,8 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
         AccesoControladoresDispositivos::$ctrlVideoconferencia->conectar();
         AccesoGui::$guiSistema->mostrarMenu();
         AccesoGui::$guiMenus->menuPrincipal(true);
-        AccesoGui::$guiEscenarios->enviarEstadoVideoconferencia();
-        AccesoGui::$guiEscenarios->escenarioEnviarClase();
+        //AccesoGui::$guiEscenarios->enviarEstadoVideoconferencia();
+        //AccesoGui::$guiEscenarios->escenarioEnviarClase();
         AccesoGui::$guiVideoconferencia->dibujarPantalla();
 	AccesoControladoresDispositivos::$ctrlProyectores->estadoCentral();
 	AccesoControladoresDispositivos::$ctrlProyectores->estadoPizarra();
@@ -78,7 +77,6 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
      * @access public
      */
     public function recivirClases( ) {
-
         AccesoGui::$guiSistema->esperarInicioSistema();
 
         AccesoControladoresDispositivos::$ctrlLuz->setLucesEscenarios(LuzTecho::$ESCENARIO_RECIBIR_CLASE);
@@ -125,6 +123,7 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
      */
     public function claseLocal( ) {
 
+
         AccesoGui::$guiSistema->esperarInicioSistema();
 
         AccesoControladoresDispositivos::$ctrlLuz->setLucesEscenarios(LuzTecho::$ESCENARIO_CLASE_LOCAL);
@@ -136,15 +135,15 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
         ConexionServidorCliente::$ctrlGuiPantallas->pipEnPantallaPresi();//control_pantallas.pipEnPantallaPresi()
         ConexionServidorCliente::$ctrlGuiPlasmas->encender();
         AccesoControladoresDispositivos::$ctrlMesaMezclas->preset90();
-AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1");
+//AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1");
         ConexionServidorCliente::$ctrlGuiProyectores->encenderCentral();
         ConexionServidorCliente::$ctrlGuiProyectores->encenderPizarra();
-        ConexionServidorCliente::$ctrlGuiProyectores->activarCentral();
-        ConexionServidorCliente::$ctrlGuiProyectores->activarPizarra();
-        usleep(3000000);
+        //ConexionServidorCliente::$ctrlGuiProyectores->activarCentral();
+        //ConexionServidorCliente::$ctrlGuiProyectores->activarPizarra();
+        //usleep(3000000);
         ConexionServidorCliente::$ctrlGuiProyectores->verPCSalaEnPizarra();
         ConexionServidorCliente::$ctrlGuiProyectores->verPCSalaEnCentral();
-        usleep(3000000);
+        //usleep(3000000);
         AccesoGui::$guiSistema->esperarInicioSistema();
         AccesoControladoresDispositivos::$ctrlPlasma->verVideoSalaEnPlasma();
         AccesoGui::$guiEscenarios->escenarioClaseLocal();
@@ -161,6 +160,8 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
      * @access public
      */
     public function seminarioClase( ) {
+
+
         AccesoGui::$guiSistema->esperarInicioSistema();
 
         AccesoControladoresDispositivos::$ctrlLuz->setLucesEscenarios(LuzTecho::$ESCENARIO_SEMINARIO_CLASE);
@@ -191,6 +192,10 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
      * @access public
      */
     public function pelicula( ) {
+
+
+echo "\n\n ENVIAR___pelicula\n";
+
 
         AccesoGui::$guiSistema->esperarInicioSistema();
 

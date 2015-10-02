@@ -22,6 +22,8 @@ class LCD extends Pantallas {
     public static $ENCENDIDO="encendido";
     public static $PIP_LCD="pip";
     public static $ENTRADA="entrada";
+    private $respuesta=array();
+    private $last_time='';
 
     /**
      *
@@ -53,9 +55,11 @@ class LCD extends Pantallas {
      * @link Properties::guardarEstado()
      */
     public function encender( ) {
+
         $respuesta=parent::encender();
         $this->encendidaVector[$this->id_disp]=true;
-$respuesta=$this->procesarRespuesta($respuesta);
+	$respuesta=$this->procesarRespuesta($respuesta);
+
         return  $respuesta;
 
     } // end of member function apagar
@@ -85,30 +89,31 @@ $respuesta=$this->procesarRespuesta($respuesta);
      */
     public function getEstado($funcion) {
 
-echo "\nGETESTADO_LCD.111...LCD:: time::: ".time();
+	$this->loadEstado();
+	$now=time();
+	
+	if($now - $this->last_time < 3){
+	  return $this->respuesta;
+	}
         $this->pip[$this->id_disp]=false;
         $comando=$this->comandos1[DaoControl::$ESTADO];
         $comando=$this->procesarComando($comando,array("id"=>$this->parametroComando,"funcion"=>$funcion));
-echo "\nGETESTADO_LCD..222..LCD:: ".$comando." time::: ".time();
         $respuesta=$this->enviarComando($comando);
-echo "\nGETESTADO_LCD...333.LCD:: ".$respuesta." time::: ".time();
-$respuesta=$this->procesarRespuesta($respuesta);
+	$respuesta=$this->procesarRespuesta($respuesta);
 
-echo "\nGETESTADO_LCD.444..LCD:: ".print_r($respuesta,1)." time::: ".time();
+	$this->respuesta=$respuesta;
+	$this->guardarEstado();
+
         return $respuesta;
     }
 
 
     public function procesarRespuesta($respuesta) {
 
-	echo "\nRESPUESLCD.ESATDO!!....LCD:: ".$respuesta;
-
         $estado=split(" ", $respuesta);
         $respuestaTratada["funcion"]=$estado[0];
         $respuestaTratada["identificador"]=$estado[1];
         $respuestaTratada["estado"]=$estado[2];
-
-echo "\nRESPUE LCD::: ".print_r($respuestaTratada);
 
         return $respuestaTratada;
     }
@@ -122,7 +127,8 @@ echo "\nRESPUE LCD::: ".print_r($respuestaTratada);
      * @link Properties::guardarEstado()
      */
     public function ponerPIP( ) {
-        usleep(4000000);
+
+        //usleep(4000000);
         $this->pip[$this->id_disp]=true;
         $comando=$this->comandos1[DaoControl::$PIP];
 
@@ -169,7 +175,8 @@ echo "\nRESPUE LCD::: ".print_r($respuestaTratada);
      */
 
     public function fuentePIP($idPip) {
-        usleep(4000000);
+
+        usleep(2000000);
         $comando=$this->comandos1[DaoControl::$FUENTEPIP];
         $this->idPip=$idPip;
 
@@ -204,7 +211,6 @@ echo "\nRESPUE LCD::: ".print_r($respuestaTratada);
      * @access public
      */
     public function fuentePIP2() {
-
         return $this->fuentePIP(2);
 
     } // end of member function fuentePIP
@@ -268,8 +274,22 @@ echo "\nRESPUE LCD::: ".print_r($respuestaTratada);
         $this->estadoDispositivo=new Properties();
         $this->estadoDispositivo->load(file_get_contents("./estadoDispositivos.properties"));
 	$this->estadoDispositivo->setProperty($this->disp.".pip",serialize($this->pip));
+	$this->estadoDispositivo->setProperty($this->disp.".respuesta",serialize($this->respuesta));
+	$this->estadoDispositivo->setProperty($this->disp.".estado",$this->estado);
+	$this->estadoDispositivo->setProperty($this->disp.".time", time() );
 	file_put_contents('./estadoDispositivos.properties', $this->estadoDispositivo->toString(true));
-
+    }
+     /*
+     * Cargar ultimo estado desde el archivo estadoDispositivos.properties
+     */
+    public function loadEstado() {
+	//$this->estado();
+        $this->estadoDispositivo=new Properties();
+        $this->estadoDispositivo->load(file_get_contents("./estadoDispositivos.properties"));
+        $this->pip=unserialize($this->estadoDispositivo->getProperty($this->disp.".pip"));
+	$this->respouesta=unserialize($this->estadoDispositivo->getProperty($this->disp.".respuesta"));
+	$this->estado=$this->estadoDispositivo->getProperty($this->disp.".estado");
+	$this->last_time=$this->estadoDispositivo->getProperty($this->disp.".time");
     }
 
 } // end of LCD

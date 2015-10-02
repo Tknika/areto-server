@@ -225,8 +225,6 @@ public function enviarPeticion( $comando ) {
 */
  public function activarPantalla() {
 
-	echo "\n\n ACTIVAR PANTALLA ESCENARIOS\n\n";
-
             $pantallaActual=new Properties();
         $pantallaActual->load(file_get_contents("./pantallaActiva.properties"));
             $pantallaActual->setProperty("Pantalla.activa",3);

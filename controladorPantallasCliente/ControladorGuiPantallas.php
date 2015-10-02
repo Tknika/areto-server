@@ -92,8 +92,11 @@ class ControladorGuiPantallas {
      */
     public function presidenciaContraparte() {
 
-	echo "\n presidenciaContraparte_____1_";
+	AccesoControladoresDispositivos::$ctrlPantallas->quitarPIPPresidencia();
 	AccesoControladoresDispositivos::$ctrlPantallas->pipEnPresidencia();
+
+	AccesoControladoresDispositivos::$ctrlPantallas->verEntradaPresidenciaAV2();
+        AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_VIDEOCONFERENCIA,            MatrizVideo::$OUTPUT_LCD_PRESIDENCIA);
 
 
 	/*
@@ -412,9 +415,12 @@ class ControladorGuiPantallas {
         } catch (Exception $e) {
         }
         AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarAudio(1, 1);
-        AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_ESCALADOR,
-            MatrizVideo::$OUTPUT_LCD_PRESIDENCIA);
 
+
+	//AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_CAMARA_1,MatrizVideo::$OUTPUT_LCD_PRESIDENCIA);
+        //AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_ESCALADOR,MatrizVideo::$OUTPUT_LCD_PRESIDENCIA);
+
+/*
         try {
             usleep(2000000);
         } catch (Exception $e) {
@@ -425,6 +431,7 @@ class ControladorGuiPantallas {
         } catch (Exception $e) {
         }
         AccesoControladoresDispositivos::$ctrlPantallas->fuentePIPPresidencia();
+*/
 
     }
 
@@ -579,6 +586,32 @@ class ControladorGuiPantallas {
         AccesoGui::$guiDispositivos->seleccionarPCSuelo();
     }
 
+      /**
+     * Metodo para mostrar en la pantalla de la entrada la imagen de camara1, si
+     * la pantalla no esta dividida activaremos la entrada vga de la pantalla.
+     *
+     * @access public
+     */
+
+
+    public function entradaKamara1() {
+
+	AccesoControladoresDispositivos::$ctrlPantallas->quitarPIPEntrada();
+	//AccesoControladoresDispositivos::$ctrlPantallas->verEntradaPresidenciaVGA();
+
+	//AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(1, 6);
+        //if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPPresidencia()) {
+	//    AccesoControladoresDispositivos::$ctrlPantallas->quitarPIPEntrada();
+            #AccesoControladoresDispositivos::$ctrlPantallas->verEntradaPresidenciaVGA();
+        //}
+
+	AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_CAMARA_3, MatrizVideo::$OUTPUT_MONITOR_PASILLO);
+
+        AccesoGui::$guiPantallas->pantallaEntradaKamara1();
+
+    }
+
+
     /**
      * Metodo para mostrar en la pantalla de la entrada el portatil 1,
      * para ello enrutara el video y el audio del portatil1 a la pantalla de la
@@ -718,38 +751,31 @@ class ControladorGuiPantallas {
     public function getComandoFlashEntrada($cmd) {
         if (strcmp($cmd->getAccion(),"ENCENDER")==0) {
             $this->entradaEncender();
+        }else if (strcmp($cmd->getAccion(),"APAGAR")==0) {
+            $this->entradaApagar();
+        }else if (strcmp($cmd->getAccion(),"DVD")==0) {
+            $this->entradaDVD();
+        }else if (strcmp($cmd->getAccion(),"DVDGRAB")==0) {
+            $this->entradaDVDGrab();
+        }else if (strcmp($cmd->getAccion(),"PCSUELO")==0) {
+            $this->entradaPCSuelo();
+        }else if (strcmp($cmd->getAccion(),"CAMARA_DE_DOCUMENTOS")==0) {
+            $this->entradaVisorDocumentos();
+        }else if (strcmp($cmd->getAccion(),"PORTATIL1")==0) {
+            $this->entradaPortatil1();
+        }else if (strcmp($cmd->getAccion(),"PORTATIL2")==0) {
+            $this->entradaPortatil2();
+        }else if (strcmp($cmd->getAccion(),"PORTATIL3")==0) {
+            $this->entradaPortatil3();
+        }else if (strcmp($cmd->getAccion(),"ATRIL")==0) {
+            $this->entradaAtril();
+        }else if (strcmp($cmd->getAccion(),"THINK_CLIENT")==0) {
+            $this->entradaRedThinkClient();
+        }else if (strcmp($cmd->getAccion(),"PIP")==0) {
+            $this->pipEnPantallaEntrada();
+        }else if (strcmp($cmd->getAccion(),"KAMARA1")==0) {
+            $this->entradaKamara1();
         }
-        else if (strcmp($cmd->getAccion(),"APAGAR")==0) {
-                $this->entradaApagar();
-            }
-            else if (strcmp($cmd->getAccion(),"DVD")==0) {
-                    $this->entradaDVD();
-                }
-                else if (strcmp($cmd->getAccion(),"DVDGRAB")==0) {
-                        $this->entradaDVDGrab();
-                    }
-                    else if (strcmp($cmd->getAccion(),"PCSUELO")==0) {
-                            $this->entradaPCSuelo();
-                        }
-                        else if (strcmp($cmd->getAccion(),"CAMARA_DE_DOCUMENTOS")==0) {
-                                $this->entradaVisorDocumentos();
-                            }
-                            else if (strcmp($cmd->getAccion(),"PORTATIL1")==0) {
-                                    $this->entradaPortatil1();
-                                }
-                                else if (strcmp($cmd->getAccion(),"PORTATIL2")==0) {
-                                        $this->entradaPortatil2();
-                                    }
-                                    else if (strcmp($cmd->getAccion(),"PORTATIL3")==0) {
-                                            $this->entradaPortatil3();
-                                        }
-                                        else if (strcmp($cmd->getAccion(),"ATRIL")==0) {
-                                                $this->entradaAtril();
-                                            }
-                                            else if (strcmp($cmd->getAccion(),"THINK_CLIENT")==0) {
-                                                    $this->entradaRedThinkClient();
-                                                }
-
 
     }
 

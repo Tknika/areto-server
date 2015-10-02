@@ -33,7 +33,7 @@ class GUI_Sonido {
      * @access public
      */
     public function getComando($id) {
-	system_class::log_message("MMMMMM222222222 id:".$id."  cMD:::". self::$COMANDOS[$id] );
+	system_class::log_message("MIC id:".$id."  cMD:::". self::$COMANDOS[$id] );
         return self::$COMANDOS[$id];
     } // end of member function getComando
 
@@ -175,12 +175,8 @@ class GUI_Sonido {
      */
     public function setMicroOn( $micro,  $on ) {
 
-	system_class::log_message("MMMMM_ONNNNNsetMicroOn :: ".$micro."  est: ".$on );
-
         $this->microsOn[$micro]=$on;
-           echo "Micrro=".$micro."\n";
         $this->enviarEstadoMicrofono($micro);
-        echo "ON=".$on."\n";
         if($on==1)
             $this->enviarVolumenMicro($micro);
         else
@@ -199,7 +195,6 @@ class GUI_Sonido {
      */
     public function getMicro( $micro ) {
 
-	system_class::log_message("MMMMM_ONNNNN estado:: ".$micro."  est: ".$this->microsOn[$micro] );
         return $this->getEstado($this->microsOn[$micro]);
     } // end of member function getMicro
 
@@ -539,23 +534,16 @@ class GUI_Sonido {
 
     }
     public function enviarVolumenMicro($micro) {
-echo "VOLUMEN MICRO ".$micro."= ".$this->getVolumenMicro($micro)."\n";
-       //$comando=new ComandoFlash("MICROFONO",substr($micro, -1).":VOLUMEN",$this->getVolumenMicro($micro));
        $comando=new ComandoFlash("MICROFONO",substr($micro, 1).":VOLUMEN",$this->getVolumenMicro($micro));
-       echo "new comando egin du\n";
        $this->enviarPeticion($comando);
 
     }
     public function enviarLimpiarVolumenMicro($micro) {
-	//$comando=new ComandoFlash("MICROFONO",substr($micro, -1).":VOLUMEN","0");
         $comando=new ComandoFlash("MICROFONO",substr($micro, 1).":VOLUMEN","0");
         $this->enviarPeticion($comando);
 
     }
     public function enviarEstadoMicrofono($micro) {
-	//$comando=new ComandoFlash("MICROFONO",substr($micro, -1),$this->getMicro($micro));
-
-	system_class::log_message("");
         $comando=new ComandoFlash("MICROFONO",substr($micro, 1),$this->getMicro($micro));
         $this->enviarPeticion($comando);
 

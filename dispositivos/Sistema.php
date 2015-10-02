@@ -46,7 +46,7 @@ class Sistema {
         AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_CAMARA_1,MatrizVideo::$OUTPUT_PIP1);
         AccesoControladoresDispositivos::$ctrlGeneradorMultiventanas->input3Ventana1();
         //y del escalador a la grabacion
-        AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_ESCALADOR,MatrizVideo::$OUTPUT_SERVIDOR_VIDEOCONFERENCIA);
+ //AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_ESCALADOR,MatrizVideo::$OUTPUT_SERVIDOR_VIDEOCONFERENCIA);
         AccesoControladoresDispositivos::$ctrlMesaMezclas->preset90();
         AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1");
         AccesoControladoresDispositivos::$ctrlDvdGrabador->pararGrabacionGrab();

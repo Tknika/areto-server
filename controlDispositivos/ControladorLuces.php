@@ -33,12 +33,8 @@ class ControladorLuces {
 
     public function  __construct() {
     //new beharren accesotik hartu
-	echo "\nControlador111111111111111111...............";
         self::$lucesSuelo=new ControladorAutomata();
-	echo "\nControlador2222222222222222...............";
         self::$lucesTecho=new ControladorLucesTecho();
-	echo "\nControlador3333333333333333...............";
-
     }
 
     /**
@@ -270,7 +266,6 @@ class ControladorLuces {
      */
     public function encenderLucesSuelo() {
 
-        echo "\n encendiendo luces suelo2 \n";
         self::$lucesSuelo->encenderLucesSuelo();
 
     }

@@ -173,7 +173,7 @@ protected $nombreDispositivo;
         $this->baudRate=$this->propiedades->getProperty($dispositivo.".BaudRate");
         $this->timeOut=$this->propiedades->getProperty($dispositivo.".TimeOut");
         $this->password=$this->propiedades->getProperty($dispositivo.".Password");
-        echo $this->strMarca. " eta ".$this->strModelo;
+        
         if(strcmp("Automata", $dispositivo)!=0) {
             $this->obtenerDatosDispositivo($this->strMarca,$this->strModelo);
             $this->cargarComandosDispositivo($this->dato_id);}

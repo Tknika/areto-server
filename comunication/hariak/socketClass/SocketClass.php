@@ -122,28 +122,15 @@ class SocketClass {
 	    return;
 	}
 	if(strstr($buf,':')===false){
-	  system_class::log_message("\nNO VALID:::: $xml ");
+	  //system_class::log_message("\nNO VALID:::: $xml ");
 	  return;
 	}
 
 	self::$last_cmd=$xml;
-	system_class::log_message("\n_____client_reply______sid:: ".self::$id_socket." pid: ".posix_getpid()."  ppid: ".posix_getppid());
+	//system_class::log_message("\n_____client_reply______sid:: ".self::$id_socket." pid: ".posix_getpid()."  ppid: ".posix_getppid());
 	
 
         if(is_array(self::$flash_sockets) && !empty(self::$flash_sockets)) {
-
-	    //system_class::log_message( "OPEN SOCKETS::: ".count(self::$flash_socket) );
-
-            /*
-	    system_class::log_message("write to flash socket:: ".print_r(self::$last_client,1) ." resp:: $xml"  );
-	    $len=strlen("$xml\0");
-	    $result=socket_write(self::$last_client, "$xml\0");
-	    usleep(20);
-	    if($result===false) {
-		system_class::log_message("ERROR writing to sinta: ".socket_strerror(socket_last_error()));
-
-	    }*/
-
 
 	    foreach(self::$flash_sockets as $sk ) {
 		system_class::log_message("write to flash socket:: ".print_r($sk,1) ." resp:: $xml"  );

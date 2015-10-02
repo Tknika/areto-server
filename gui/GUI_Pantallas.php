@@ -122,7 +122,6 @@ class GUI_Pantallas {
      * @access public
      */
     public function getComandoEstado( $pantalla ) {
-
 	$this->setPantallaActiva($pantalla);
         if(strcmp($this->getPantallaActiva(),self::$PANTALLA_ELECTRICA)==0)
             return $this->getEstadoPantallaElectrica();
@@ -432,6 +431,30 @@ class GUI_Pantallas {
     public function pantallaEntradaRedThinkClient( ) {
         $this->setComando(self::$PANTALLA_PRESIDENCIA, "THINK_CLIENT");
     } // end of member function pantallaEntradaRedThinkClient
+
+
+     /**
+     *
+     *
+     * @return
+     * @access public
+     */
+    public function pantallaEntradaPip( ) {
+        $this->setComando(self::$PANTALLA_PRESIDENCIA, "PIP");
+    } // end of member function pantallaEntradaRedThinkClient
+
+    /**
+     *
+     *
+     * @return
+     * @access public
+     */
+    public function pantallaEntradaKamara1( ) {
+        $this->setComando(self::$PANTALLA_PRESIDENCIA, "KAMARA1");
+    } // end of member function pantallaEntradaRedThinkClient
+
+
+
 
     /**
      *
