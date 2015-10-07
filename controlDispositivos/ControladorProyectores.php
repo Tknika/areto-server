@@ -223,6 +223,12 @@ class ControladorProyectores {
 
     } // end of member function isEncendido
 
+    
+    public function forzarEstadoOnCentral() {
+	echo "ProyectorCentral debería estar encendido. Actualizando estadoDispositivos.properties ...";
+	return self::$central->forzarEstadoOn();
+    }
+
 
     /////////////////////////////////////////////
     //////////Funciones de la pizarra////////////
@@ -410,5 +416,10 @@ class ControladorProyectores {
         return self::$pizarra->estado();
 
     } // end of member function isEncendido
+
+    public function forzarEstadoOnPizarra() {
+	echo "ProyectorPizarra debería estar encendido. Actualizando estadoDispositivos.properties ...";
+        return self::$pizarra->forzarEstadoOn();
+    }
 }
 ?>

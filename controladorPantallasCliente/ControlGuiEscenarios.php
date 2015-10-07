@@ -144,14 +144,16 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
         ConexionServidorCliente::$ctrlGuiProyectores->verPCSalaEnPizarra();
         ConexionServidorCliente::$ctrlGuiProyectores->verPCSalaEnCentral();
         //usleep(3000000);
-        AccesoGui::$guiSistema->esperarInicioSistema();
+        AccesoControladoresDispositivos::$ctrlProyectores->forzarEstadoOnCentral();
+        AccesoControladoresDispositivos::$ctrlProyectores->forzarEstadoOnPizarra();
+	AccesoGui::$guiSistema->esperarInicioSistema();
         AccesoControladoresDispositivos::$ctrlPlasma->verVideoSalaEnPlasma();
         AccesoGui::$guiEscenarios->escenarioClaseLocal();
         AccesoGui::$guiMenus->menuPrincipal(true);
         AccesoGui::$guiSistema->mostrarMenu();
         AccesoGui::$guiEscenarios->enviarEstadoVideoconferencia();
-	AccesoControladoresDispositivos::$ctrlProyectores->estadoCentral();
-	AccesoControladoresDispositivos::$ctrlProyectores->estadoPizarra();
+	#AccesoControladoresDispositivos::$ctrlProyectores->estadoCentral();
+	#AccesoControladoresDispositivos::$ctrlProyectores->estadoPizarra();
     } // end of member function claseLocal
 
     /**

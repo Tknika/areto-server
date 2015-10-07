@@ -395,6 +395,21 @@ class Proyector extends DispositivoIP {
 
     }
 
+   /**
+    * Guarda un estado de proyector encendido (sin comprobarlo) en el fichero estadoDispositivos.properties
+    */
+
+    public function forzarEstadoOn() {
+        $this->estadoDispositivo=new Properties();
+        $this->estadoDispositivo->load(file_get_contents("./estadoDispositivos.properties"));
+        $this->estadoDispositivo->setProperty($this->disp.".estado","0");
+        $this->estadoDispositivo->setProperty($this->disp.".result","ON\:Projector should be ON.");
+        $this->estadoDispositivo->setProperty($this->disp.".time","0000000000");
+        $this->estadoDispositivo->setProperty($this->disp.".encendido","1");
+        $this->estadoDispositivo->setProperty($this->disp.".mute","OFF");
+        file_put_contents('./estadoDispositivos.properties', $this->estadoDispositivo->toString(true));
+    }
+
      /*
      * Cargar ultimo estado desde el archivo estadoDispositivos.properties
      */
