@@ -137,6 +137,53 @@ class ControladorGuiPantallas {
         
     }
 
+
+
+    /**
+     * Metodo para dividir la pantalla de la presidencia en dos, a un lado mostrara
+     * el pc y al otro la camara de la presidencia
+     *
+     * Si la pantalla esta apagada, la encendera, activara la entrada VGA (para el
+     * pc) y enrutara el audio y video del pc a la pantalla. Por ultimo enrutara
+     * el escalador a la pantalla (???????), dividira la pantalla en 2 y elegira
+     * la fuente pip 1 de la pantalla
+     *
+     * @access public
+     */
+    public function pipEnPantallaPresi() {
+        if (! AccesoControladoresDispositivos::$ctrlPantallas->isEncendidaPresidencia()) {
+            AccesoControladoresDispositivos::$ctrlPantallas->encenderPresidencia();
+        }
+        AccesoControladoresDispositivos::$ctrlPantallas->ponerPIPPresidencia();
+	AccesoControladoresDispositivos::$ctrlPantallas->fuentePIPPresidencia();
+    }
+
+
+    public function KenduPipEnPantallaPresidencia() {
+	AccesoControladoresDispositivos::$ctrlPantallas->encenderPresidencia();
+	AccesoControladoresDispositivos::$ctrlPantallas->quitarPIPPresidencia();
+    }
+
+
+
+    
+    public function presidenciaCamara() {
+        AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(1, 1);
+        try {
+            usleep(100000);
+        } catch (Exception $e) {
+        }
+        //AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarAudio(1, 1);
+        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPPresidencia()) {
+            AccesoControladoresDispositivos::$ctrlPantallas->verEntradaPresidenciaVGA();
+        }
+	//AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_CAMARA_3, 1);
+	AccesoControladoresDispositivos::$ctrlPantallas->verEntradaPresidenciaAV1();
+        AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_CAMARA_3,MatrizVideo::$OUTPUT_LCD_PRESIDENCIA);
+        //AccesoGui::$guiPantallas->pantallaPresidenciaNuestra();
+    }
+
+
     /**
      * Metodo para mostrar en la pantalla de la presidencia el pc de la sala, para
      * ello enrutara el video y el audio del pc a la pantalla de la presidencia, si
@@ -386,54 +433,6 @@ class ControladorGuiPantallas {
         //AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_VIDEOCONFERENCIA, MatrizVideo::$OUTPUT_LCD_PRESIDENCIA);
     }
 
-    /**
-     * Metodo para dividir la pantalla de la presidencia en dos, a un lado mostrara
-     * el pc y al otro la camara de la presidencia
-     *
-     * Si la pantalla esta apagada, la encendera, activara la entrada VGA (para el
-     * pc) y enrutara el audio y video del pc a la pantalla. Por ultimo enrutara
-     * el escalador a la pantalla (???????), dividira la pantalla en 2 y elegira
-     * la fuente pip 1 de la pantalla
-     *
-     * @access public
-     */
-    public function pipEnPantallaPresi() {
-
-        if (! AccesoControladoresDispositivos::$ctrlPantallas->isEncendidaPresidencia()) {
-            AccesoControladoresDispositivos::$ctrlPantallas->encenderPresidencia();
-            try {
-                usleep(3000000);
-            } catch (Exception $e) {
-                $e->getMessage();
-            }
-        }
-        AccesoControladoresDispositivos::$ctrlPantallas->ponerPIPPresidencia();
-        AccesoControladoresDispositivos::$ctrlPantallas->verEntradaPresidenciaVGA();
-        AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(1, 1);
-        try {
-            usleep(100000);
-        } catch (Exception $e) {
-        }
-        AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarAudio(1, 1);
-
-
-	//AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_CAMARA_1,MatrizVideo::$OUTPUT_LCD_PRESIDENCIA);
-        //AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_ESCALADOR,MatrizVideo::$OUTPUT_LCD_PRESIDENCIA);
-
-/*
-        try {
-            usleep(2000000);
-        } catch (Exception $e) {
-        }
-        AccesoControladoresDispositivos::$ctrlPantallas->ponerPIPPresidencia();
-        try {
-            usleep(2000000);
-        } catch (Exception $e) {
-        }
-        AccesoControladoresDispositivos::$ctrlPantallas->fuentePIPPresidencia();
-*/
-
-    }
 
     //////////////////////////////////////////
     ////////FUNCIONES PANTALLA ENTRADA////////
@@ -454,27 +453,34 @@ class ControladorGuiPantallas {
     public function pipEnPantallaEntrada() {
 
         AccesoControladoresDispositivos::$ctrlPantallas->encenderEntrada();
-       AccesoGui::$guiPantallas->pantallaEntradaEncender();
+        AccesoGui::$guiPantallas->pantallaEntradaEncender();
         try {
-            usleep(3000000);
+            usleep(1000000);
         } catch (Exception $e) {
         }
-        AccesoControladoresDispositivos::$ctrlPantallas->verEntradaEntradaVGA();
-        AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(1, 6);
-        AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_CAMARA_3,
-            MatrizVideo::$OUTPUT_MONITOR_PASILLO);
+        //AccesoControladoresDispositivos::$ctrlPantallas->verEntradaEntradaVGA();
+        //AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(1, 6);
+        //AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_CAMARA_3,MatrizVideo::$OUTPUT_MONITOR_PASILLO);
 
         try {
-            usleep(3000000);
+            usleep(1000000);
         } catch (Exception $e) {
         }
         AccesoControladoresDispositivos::$ctrlPantallas->ponerPIPEntrada();
         try {
-            usleep(3000000);
+            usleep(1000000);
         } catch (Exception $e) {
         }
         AccesoControladoresDispositivos::$ctrlPantallas->fuentePIPEntrada();
+    }
 
+    public function KenduPipEnPantallaEntrada() {
+	AccesoControladoresDispositivos::$ctrlPantallas->encenderEntrada();
+        try {
+            usleep(1000000);
+        } catch (Exception $e) {
+        }
+	AccesoControladoresDispositivos::$ctrlPantallas->quitarPIPEntrada();
     }
 
     public function PantallaPantallaEntrada() {
@@ -521,7 +527,7 @@ class ControladorGuiPantallas {
 
         AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_DVD_REPRODUCTOR,
             MatrizVideo::$OUTPUT_MONITOR_PASILLO);
-        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPPresidencia()) {
+        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPEntrada()) {
             AccesoControladoresDispositivos::$ctrlPantallas->verEntradaEntradaAV1();
         }
         AccesoGui::$guiPantallas->pantallaEntradaDVD();
@@ -541,7 +547,7 @@ class ControladorGuiPantallas {
 
         AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_DVD_GRABADOR,
             MatrizVideo::$OUTPUT_MONITOR_PASILLO);
-        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPPresidencia()) {
+        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPEntrada()) {
             AccesoControladoresDispositivos::$ctrlPantallas->verEntradaEntradaAV1();
         }
         AccesoGui::$guiPantallas->pantallaEntradaDVDGrab();
@@ -561,7 +567,7 @@ class ControladorGuiPantallas {
     public function entradaVisorDocumentos() {
 
         AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(8, 6);
-        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPPresidencia()) {
+        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPEntrada()) {
             AccesoControladoresDispositivos::$ctrlPantallas->verEntradaEntradaVGA();
         }
         AccesoControladoresDispositivos::$ctrlVisorDocumentos->encender();
@@ -578,10 +584,12 @@ class ControladorGuiPantallas {
      * @access public
      */
     public function entradaPCSuelo() {
+
         AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(1, 6);
-        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPPresidencia()) {
-            AccesoControladoresDispositivos::$ctrlPantallas->verEntradaPresidenciaVGA();
+        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPEntrada()) {
+            AccesoControladoresDispositivos::$ctrlPantallas->verEntradaEntradaVGA();
         }
+	AccesoControladoresDispositivos::$ctrlPantallas->verEntradaEntradaVGA();
         AccesoGui::$guiPantallas->pantallaEntradaPCSuelo();
         AccesoGui::$guiDispositivos->seleccionarPCSuelo();
     }
@@ -596,19 +604,12 @@ class ControladorGuiPantallas {
 
     public function entradaKamara1() {
 
-	AccesoControladoresDispositivos::$ctrlPantallas->quitarPIPEntrada();
-	//AccesoControladoresDispositivos::$ctrlPantallas->verEntradaPresidenciaVGA();
-
-	//AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(1, 6);
-        //if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPPresidencia()) {
-	//    AccesoControladoresDispositivos::$ctrlPantallas->quitarPIPEntrada();
-            #AccesoControladoresDispositivos::$ctrlPantallas->verEntradaPresidenciaVGA();
-        //}
-
-	AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_CAMARA_3, MatrizVideo::$OUTPUT_MONITOR_PASILLO);
-
+	if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPEntrada ()) {
+            AccesoControladoresDispositivos::$ctrlPantallas->verEntradaEntradaVGA();
+        }
+	AccesoControladoresDispositivos::$ctrlPantallas->verEntradaEntradaAV2();
+        AccesoControladoresDispositivos::$ctrlMatrizVideo->asignarVideo(MatrizVideo::$INPUT_CAMARA_3,MatrizVideo::$OUTPUT_MONITOR_PASILLO);
         AccesoGui::$guiPantallas->pantallaEntradaKamara1();
-
     }
 
 
@@ -621,7 +622,7 @@ class ControladorGuiPantallas {
      */
     public function entradaPortatil1() {
         AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(2, 6);
-        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPPresidencia()) {
+        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPEntrada()) {
             AccesoControladoresDispositivos::$ctrlPantallas->verEntradaEntradaVGA();
         }
         AccesoGui::$guiPantallas->pantallaEntradaPortatil1();
@@ -635,7 +636,7 @@ class ControladorGuiPantallas {
      */
     public function entradaPortatil2() {
         AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(3, 6);
-        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPPresidencia()) {
+        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPEntrada()) {
             AccesoControladoresDispositivos::$ctrlPantallas->VerEntradaEntradaVGA();
         }
         AccesoGui::$guiPantallas->pantallaEntradaPortatil2();
@@ -649,7 +650,7 @@ class ControladorGuiPantallas {
      */
     public function entradaPortatil3() {
         AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(4, 6);
-        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPPresidencia()) {
+        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPEntrada()) {
             AccesoControladoresDispositivos::$ctrlPantallas->verEntradaEntradaVGA();
         }
         AccesoGui::$guiPantallas->pantallaEntradaPortatil3();
@@ -665,7 +666,7 @@ class ControladorGuiPantallas {
      */
     public function entradaAtril() {
         AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(9, 6);
-        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPPresidencia()) {
+        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPEntrada()) {
             AccesoControladoresDispositivos::$ctrlPantallas->verEntradaEntradaVGA();
         }
         AccesoGui::$guiPantallas->pantallaEntradaAtril();
@@ -680,7 +681,7 @@ class ControladorGuiPantallas {
      */
     public function entradaRedThinkClient() {
         AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(5, 6);
-        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPPresidencia()) {
+        if (! AccesoControladoresDispositivos::$ctrlPantallas->isPIPEntrada()) {
             AccesoControladoresDispositivos::$ctrlPantallas->verEntradaEntradaVGA();
         }
 
@@ -696,11 +697,13 @@ class ControladorGuiPantallas {
      * @access public
      */
     public function pantallaEntradaPCSuelo( ) {
+	AccesoControladoresDispositivos::$ctrlPantallas->verEntradaEntradaVGA();
         AccesoControladoresDispositivos::$ctrlMatrizVGA->asignarVideo(1,6);
         if(!AccesoControladoresDispositivos::$ctrlPantallaPresidencia->isPIP("PANTALLA_ENTRADA"))
             AccesoControladoresDispositibos::$ctrlPantallaEntrada->verEnPantallaVGA("PANTALLA_ENTRADA");
 
     } // end of member function pantallaEntradaPCSuelo
+    
 
     /**
      * Metodo para examinar la accion del comando recivido por la pelicula flash
@@ -738,6 +741,12 @@ class ControladorGuiPantallas {
             $this->presidenciaEncender();
         }else if (strcmp($cmd->getAccion(),"APAGAR")==0) {
             $this->presidenciaApagar();
+	}else if (strcmp($cmd->getAccion(),"ERDIBITUA")==0) {
+            $this->pipEnPantallaPresi();
+	}else if (strcmp($cmd->getAccion(),"BAKARRA")==0)  {
+            $this->KenduPipEnPantallaPresidencia();
+	}else if (strcmp($cmd->getAccion(),"KAMARA1")==0 || strcmp($cmd->getAccion(),"CAMARA")==0 ) {
+            $this->presidenciaCamara();
         }
 
     }
@@ -771,11 +780,16 @@ class ControladorGuiPantallas {
             $this->entradaAtril();
         }else if (strcmp($cmd->getAccion(),"THINK_CLIENT")==0) {
             $this->entradaRedThinkClient();
-        }else if (strcmp($cmd->getAccion(),"PIP")==0) {
+        }else if (strcmp($cmd->getAccion(),"ERDIBITUA")==0) {
             $this->pipEnPantallaEntrada();
-        }else if (strcmp($cmd->getAccion(),"KAMARA1")==0) {
+        }else if (strcmp($cmd->getAccion(),"KAMARA1")==0 || strcmp($cmd->getAccion(),"CAMARA")==0 ) {
             $this->entradaKamara1();
+	 }else if (strcmp($cmd->getAccion(),"BAKARRA")==0)  {
+            $this->KenduPipEnPantallaEntrada();
         }
+
+
+
 
     }
 

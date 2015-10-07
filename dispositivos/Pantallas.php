@@ -148,7 +148,7 @@ abstract class Pantallas extends DispositivoIP {
      *
      */
     public function verEntradaPantallaAV( $idVC ) {
-        usleep(5000000);
+        usleep(2000000);
         $this->encenderApagar=false;
         $comando=$this->comandos1[DaoControl::$VC];
         $this->vcNum=$idVC;

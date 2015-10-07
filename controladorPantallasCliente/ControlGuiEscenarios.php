@@ -194,9 +194,6 @@ AccesoControladoresDispositivos::$ctrlMesaMezclas->desactivarMicPresidencia("M1"
     public function pelicula( ) {
 
 
-echo "\n\n ENVIAR___pelicula\n";
-
-
         AccesoGui::$guiSistema->esperarInicioSistema();
 
         AccesoControladoresDispositivos::$ctrlLuz->setLucesEscenarios(LuzTecho::$ESCENARIO_PELICULA);
