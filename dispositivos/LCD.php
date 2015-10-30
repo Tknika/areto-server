@@ -97,6 +97,7 @@ class LCD extends Pantallas {
 	}
         $this->pip[$this->id_disp]=false;
         $comando=$this->comandos1[DaoControl::$ESTADO];
+
         $comando=$this->procesarComando($comando,array("id"=>$this->parametroComando,"funcion"=>$funcion));
         $respuesta=$this->enviarComando($comando);
 	$respuesta=$this->procesarRespuesta($respuesta);
@@ -128,7 +129,7 @@ class LCD extends Pantallas {
      */
     public function ponerPIP( ) {
 
-        //usleep(4000000);
+        usleep(4000000);
         $this->pip[$this->id_disp]=true;
         $comando=$this->comandos1[DaoControl::$PIP];
 
